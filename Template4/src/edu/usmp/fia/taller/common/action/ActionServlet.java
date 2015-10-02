@@ -11,12 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import edu.usmp.fia.taller.common.bean.Persona;
+import edu.usmp.fia.taller.common.bean.User;
 
 public class ActionServlet extends HttpServlet {
 
@@ -40,8 +42,6 @@ public class ActionServlet extends HttpServlet {
 	private void goAction() throws IOException, ServletException {
 		String oStrMethod = null;
 		try {
-
-
 			oStrMethod = request.getParameter("f");
 			if(oStrMethod==null || oStrMethod.trim().length()==0) {
 				List<Method> oListMethod = getMethodsAnnotatedWith(this.getClass(), Default.class);
@@ -61,7 +61,7 @@ public class ActionServlet extends HttpServlet {
 			RequireLogin oAnnRequireLogin = oMethod.getAnnotation(RequireLogin.class);
 			HttpMethod oInvokeAnnMethod = oMethod.getAnnotation(HttpMethod.class);
 			
-			HttpMethodType oReqMethodType = HttpMethodType.get(request.getMethod());			
+			HttpMethodType oReqMethodType = HttpMethodType.get(request.getMethod());
 			HttpMethodType oInvokeMethodType = HttpMethodType.GET;
 			if(oInvokeAnnMethod!=null)
 				oInvokeMethodType = oInvokeAnnMethod.value();
@@ -69,9 +69,10 @@ public class ActionServlet extends HttpServlet {
 			if(oReqMethodType == oInvokeMethodType) {
 				//oMethod.invoke(this, request, response);
 				if(oAnnRequireLogin==null || oAnnRequireLogin.value()) {
-					Persona oPersona = (Persona)request.getSession(false).getAttribute(SessionParameters.PERSONA.text());
-					log.info("oPersona: " + oPersona);
+					Persona oPersona = null;
+					try { oPersona = (Persona)request.getSession(false).getAttribute(SessionParameters.PERSONA.text()); } catch (NullPointerException ex) { }
 					if(oPersona == null) {
+						//log.info("oPersona: " + oPersona);
 						error(601, "Access denied", "Access denied");
 						return;
 					} else {
@@ -80,7 +81,7 @@ public class ActionServlet extends HttpServlet {
 				}
 				oMethod.invoke(this);
 				log.info("final method");
-			} else { 
+			} else {
 				throw new NoSuchMethodException();
 			}
 		} catch (NoSuchMethodException nsex) {
@@ -92,17 +93,19 @@ public class ActionServlet extends HttpServlet {
 		}
 	}
 
-	
+
+
 	private void error(int htmlStatusCode, String description, String stacktrace) throws IOException, ServletException {
 		log.info("htmlStatusCode: " + htmlStatusCode);
 		response.setStatus(htmlStatusCode);
 		response.setHeader("description", description);
 		response.setHeader("stacktrace", stacktrace);
-		response.sendRedirect("errordetail.jsp");
+		//response.sendRedirect("/errordetail.jsp");
+		request.getServletContext().getRequestDispatcher("/errordetail.jsp").forward(request, response);
 	}
-	
-	
-	
+
+
+
 	private List<Method> getMethodsAnnotatedWith(final Class<?> type, final Class<? extends Annotation> annotation) {
     	log.info(annotation);
 	    final List<Method> oMethods = new ArrayList<Method>();

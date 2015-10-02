@@ -75,7 +75,7 @@ public class LoginServlet extends ActionServlet {
 		log.info("logout");
 		HttpSession oSession = request.getSession(false);
 		oSession.invalidate();
-		response.sendRedirect("/index.jsp");
+		response.sendRedirect(request.getServletContext().getContextPath() + "/index.jsp");
 	}
 
 

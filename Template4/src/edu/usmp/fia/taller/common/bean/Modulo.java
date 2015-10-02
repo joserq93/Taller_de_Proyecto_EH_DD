@@ -4,7 +4,7 @@ public class Modulo {
 
 	private int idModulo;
 	private String descripcion;
-	
+	private String mainUrl;
 	
 	public int getIdModulo() {
 		return idModulo;
@@ -17,6 +17,12 @@ public class Modulo {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public String getMainUrl() {
+		return mainUrl;
+	}
+	public void setMainUrl(String mainUrl) {
+		this.mainUrl = mainUrl;
 	}
 	
 	

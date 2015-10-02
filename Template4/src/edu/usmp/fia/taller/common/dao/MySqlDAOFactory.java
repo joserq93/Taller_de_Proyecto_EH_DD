@@ -70,7 +70,7 @@ public class MySqlDAOFactory extends DAOFactory {
 
 
 	public DAOFactoryGeneral getGeneral() { return new MysqlFactoryGeneral(); }
-	//public DAOFactoryMCurricular getMallaCurricular() { return new MySqlFactoryMCurricular(); }
-	//public DAOFactoryRegDocente getRegistroDocente() { return new MysqlFactoryRegDocente(); }
+	public DAOFactoryMCurricular getMallaCurricular() { return new MySqlFactoryMCurricular(); }
+	public DAOFactoryRegDocente getRegistroDocente() { return new MysqlFactoryRegDocente(); }
 	
 }

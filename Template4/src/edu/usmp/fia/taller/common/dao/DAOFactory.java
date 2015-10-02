@@ -18,8 +18,8 @@ public abstract class DAOFactory {
 
 	
 	public abstract DAOFactoryGeneral getGeneral();
-	//public abstract DAOFactoryMCurricular getMallaCurricular();
-	//public abstract DAOFactoryRegDocente getRegistroDocente();
+	public abstract DAOFactoryMCurricular getMallaCurricular();
+	public abstract DAOFactoryRegDocente getRegistroDocente();
 	
 	
 	public static DAOFactory getDAOFactory(int factory){

@@ -24,7 +24,7 @@ import edu.usmp.fia.taller.common.dao.DAOFactory;
 public class WelcomeServlet extends ActionServlet {
 
 	public static final String MODULES = "modules";
-
+	
 	@Default
 	@HttpMethod(HttpMethodType.GET)
 	public void modules() throws Exception {
@@ -32,6 +32,11 @@ public class WelcomeServlet extends ActionServlet {
 		Persona oPersona = (Persona) request.getSession(false).getAttribute(SessionParameters.PERSONA.text());
 		DAOFactory oDAOFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 		List<Modulo> oList = oDAOFactory.getGeneral().getUsuario().getModulosPorUsuario(oPersona.getUsuario().getIdUser());
+		
+		for(Modulo oModulo: oList) {
+			log.info(oModulo.getDescripcion());
+		}
+		
 		request.setAttribute(MODULES, oList);
 		request.getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
 	} 

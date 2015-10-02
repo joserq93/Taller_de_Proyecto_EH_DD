@@ -29,6 +29,7 @@ public class MysqlUsuario extends MySqlDAOFactory implements DAOUsuario {
 				Modulo oModulo = new Modulo();
 				oModulo.setIdModulo(oRs.getInt("id_modulo"));
 				oModulo.setDescripcion(oRs.getString("descripcion"));
+				oModulo.setMainUrl(oRs.getString("main_url"));
 				oList.add(oModulo);
 			}
 		} finally {
