@@ -9,6 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <link href="css/boostrap/bootstrap.min.css" rel="stylesheet" />
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <link href="css/dashboard.css" rel="stylesheet" />
 <title>Insert title here</title>
 </head>
@@ -44,11 +46,42 @@
 				<ul class="nav nav-sidebar">
 					<li class="active"><a href="#">Malla curricular</a></li>
 					<li><a href="#">Registro de docentes</a></li>
+					<li><a data-toggle="modal" href="#myModal">Elaboracion de Horarios</a></li>
 				</ul>
 
 			</div>
 		</div>
 	</div>
+
+
+		<!-- Inicio Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content" style="margin-top:50%;">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Sistema Elaboracion de Horarios</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>¿Desea agregar el archivo excel consolidado?.</p>
+		        </br>
+		        <center>
+			        <button type="button" class="btn btn-success">Agregar archivo</button>
+			        <button type="button" class="btn btn-info">No agregar archivo</button>
+			     </center>
+			     <p>.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<!-- Fin Modal -->
+
 	<script src="../Scripts/jquery-1.9.1.js"></script>
 	<script src="../Scripts/bootstrap.min.js"></script>
 </body>
