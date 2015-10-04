@@ -7,7 +7,7 @@
 	
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
-	<title>DataTables example - Bootstrap</title>
+	<title>Cargar Excel </title>
 
 	<!--Estilos necesarios-->
 
@@ -36,15 +36,50 @@
 		} );
 	</script>
 
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link href="css/dashboard.css" rel="stylesheet" />
 </head>
-<body class="wide example">
-<%@page import="edu.usmp.fia.taller.common.bean.HorariosBean"%>
-<%@page import="java.util.List"%>
-<% List<HorariosBean> datos=(List<HorariosBean>)request.getAttribute("listaHorario"); %>
-<% String mensaje= (String)request.getAttribute("mensaje"); %>
+<%@page import="edu.usmp.fia.taller.common.action.SessionParameters"%>
+<%@page import="edu.usmp.fia.taller.login.servlet.LoginServlet"%>
+<%@page import="edu.usmp.fia.taller.common.bean.Persona"%>
+<%
+	Persona oPersona = (Persona) request.getSession(false)
+			.getAttribute(SessionParameters.PERSONA.text());
+%>
+<body >
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Taller</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><%= oPersona.getNombre1() + " " + oPersona.getApePaterno()%></a></li>
+					<li><a href="login?f=logout">Salir</a></li>
+				</ul>
+	
+			</div>
+		</div>
+		</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="#">Malla curricular</a></li>
+					<li><a href="Registrar_Docente?p='RegistrarDocente'">Registro de docentes</a></li>
+					<li><a data-toggle="modal" href="#myModal">Elaboracion de Horarios</a></li>
+				</ul>
 
-
-	<div class="fw-container">
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<h2>Contenido</h2>
+				<div class="fw-container">
 		<form action="cargarExcels" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="f" value="cargarExcel" /> <input type="hidden"
 			name="p" id="p" value="" />
@@ -54,71 +89,51 @@
 			<input type="submit" class="btn btn-danger" value="Subir Archivo">
 		</form>
 	</div>
-	
-<% if(datos!=null){ %>
-
-
-	<div class="fw-container">
-
-			<div class="content" style="overflow-x:scroll;">
-				
-				<div style="padding:5%; width:90% ">
-				<table id="example" class="table table-striped table-bordered">
-					<thead>
-						<tr>
-						<!-- 	<th>CODFAC</th> -->
-						<!-- 	<th>C01</th> -->
-								<th>CICLO</th>
-								<th>TUR</th>
-								<th>COD</th>
-								<th>LAB</th>
-								<th>PROFESOR</th>
-								<th>CURSO</th>
-						<!--		<th>DESRES</th> -->
-								<th>SECC</th>
-								<th>AULA</th>
-								<th>CRED</th>
-								<th>LUNES</th>
-								<th>MARTES</th>
-								<th>MIERCOLES</th>
-								<th>JUEVES</th>
-								<th>VIERNES</th>
-								<th>SABADO</th>
-						<!--  		<th>DOMINGO </th> -->
-
-						</tr>
-					</thead>
-
-					<tbody>
-					  <%for(HorariosBean dato:datos){ %>
-						<tr>
-						<!-- 	<td><%=dato.getCODFAC()%></td>-->
-			     		<!--	<td><%=dato.getC01()%></td> -->
-			            	<td><%=dato.getCICEST()%></td>
-			            	<td><%=dato.getTUR()%></td>
-			            	<td><%=dato.getCODCUR()%></td>
-			            	<td><%=dato.getCODCURTEO()%></td>
-			            	<td><%=dato.getPROFESOR()%></td>
-			            	<td><%=dato.getCURSO()%></td>
-			            <!--	<td><%=dato.getDESRES()%></td> -->
-			            	<td><%=dato.getCODSEC()%></td>
-			            	<td><%=dato.getAULA()%></td>
-			            	<td><%=dato.getNUMCRE()%></td>
-			            	<td><%=dato.getLUNES()%></td>
-			            	<td><%=dato.getMARTES()%></td>
-			            	<td><%=dato.getMIERCOLES()%></td>
-			            	<td><%=dato.getJUEVES()%></td>
-			            	<td><%=dato.getVIERNES()%></td>
-			            	<td><%=dato.getSABADO()%></td>
-			            <!--	<td><%=dato.getDOMINGO()%></td> -->
-						</tr>
-					<%} %>	
-					
-					</tbody>
-				</table>
-</div>
 			</div>
+		</div>
+
 	</div>
-<%} %>
+
+<!-- Inicio Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content" style="margin-top:50%;">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Sistema Elaboracion de Horarios</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>¿Desea agregar el archivo excel consolidado?.</p>
+		        </br>
+		        <center>
+				<form action="cargarExcels" method="get" >
+						<input type="hidden" name="f" value="leerExcel" /> <input type="hidden"
+			name="p" id="p" value="" />
+			        <button type="submit"  class="btn btn-success">Agregar archivo</button>
+			     </form>
+			     <form action="ElaboracionHorariosServlet" method="get" > 
+			     <input type="hidden" name="f" value="leerHorario" /> <input type="hidden"
+						name="p" id="p" value="" /> 
+			        <button type="submit"  class="btn btn-info">No agregar archivo</button>
+				</form>
+			     </center>
+			     <p>.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<!-- Fin Modal -->
+
+	<script src="../Scripts/jquery-1.9.1.js"></script>
+	<script src="../Scripts/bootstrap.min.js"></script>
+
+	
+
 </body>
 </html>
