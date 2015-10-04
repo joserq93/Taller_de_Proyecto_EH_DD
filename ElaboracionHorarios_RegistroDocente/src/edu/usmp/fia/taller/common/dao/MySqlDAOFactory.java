@@ -42,7 +42,7 @@ public class MySqlDAOFactory extends DAOFactory {
 				switch (ThreadUtil.getCallerModule()) {
 				case 0:
 					userName = "root";
-					password = "root";
+					password = "";
 					break;
 				case 1:
 					userName = "seguimiento";
