@@ -58,7 +58,7 @@
 			<form action="<%=getServletContext().getContextPath() %>/Guardar_Docente" method="post">
 		<input type="hidden" name="f" value="GuardarDocente" /> 
 				<p>Datos Generales</p>
-				<p>Codigo: <input type="text" name="codigo" /></p>
+				<p>Codigo: <input type="text" name="codigo" disabled /></p>
 				<p>Url Foto: <input type="text" name="urlfoto" /></p>
 				<p>Nombres: <input type="text" name="nombres" /></p>
 				<p>Apellido Paterno: <input type="text" name="apellidopaterno" /></p>

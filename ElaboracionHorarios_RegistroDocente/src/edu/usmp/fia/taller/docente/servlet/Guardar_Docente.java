@@ -30,11 +30,11 @@ public class Guardar_Docente extends ActionServlet {
 
 		try {
 			docente=new Docente();
-			SimpleDateFormat forma=new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat forma=new SimpleDateFormat("yyyy-MM-dd");
 			System.out.print("HOLA 1\n");
 
 			System.out.print('-'+request.getParameter("codigo"));
-			int id_docente=Integer.parseInt(request.getParameter("codigo"));
+			
 			System.out.print("HOLA 1\n");
 			int id_Pais_nacionalidad=Integer.parseInt(request.getParameter("pais"));
 			System.out.print("HOLA 1\n");
@@ -67,7 +67,7 @@ public class Guardar_Docente extends ActionServlet {
 			System.out.print("HOLA 1\n");
 			char sexo=request.getParameter("sexo").charAt(0);
 			System.out.print("HOLA 1.1");
-			Date fecha_nacimiento=forma.parse(request.getParameter("fechanacimiento"));
+			//Date fecha_nacimiento=forma.parse(request.getParameter("fechanacimiento"));
 			String referencia_direccion=request.getParameter("referencia");
 			String tipo_documento=request.getParameter("tipodoc");
 			String grado_academico=request.getParameter("gradoacademico");
@@ -75,7 +75,7 @@ public class Guardar_Docente extends ActionServlet {
 			String especialidad=request.getParameter("especialidad");
 			String institucion=request.getParameter("institucion");
 			System.out.print("HOLA 1.2");
-			Date fecha_ingreso=forma.parse(request.getParameter("fechaingreso"));
+			//Date fecha_ingreso=forma.parse(request.getParameter("fechaingreso"));
 			System.out.print("HOLA 2");
 			
 			
@@ -84,7 +84,7 @@ public class Guardar_Docente extends ActionServlet {
 			
 
 			
-			docente.setId_docente(id_docente);
+			
 			docente.setId_Pais_nacionalidad(id_Pais_nacionalidad);
 			docente.setId_Departamento_nacionalidad(id_Departamento_nacionalidad);
 			docente.setId_Provincia_nacionalidad(id_Provincia_nacionalidad);
@@ -101,14 +101,15 @@ public class Guardar_Docente extends ActionServlet {
 			docente.setEstado(estado);
 			docente.setEstado_civil(estado_civil);
 			docente.setSexo(sexo);
-			docente.setFecha_nacimiento(fecha_nacimiento);
+			//System.out.print(""+fecha_nacimiento);
+			//docente.setFecha_nacimiento(fecha_nacimiento);
 			docente.setReferencia_direccion(referencia_direccion);
 			docente.setTipo_documento(tipo_documento);
 			docente.setGrado_academico(grado_academico);
 			docente.setProfecion(profecion);
 			docente.setEspecialidad(especialidad);
 			docente.setInstitucion(institucion);
-			docente.setFecha_ingreso(fecha_ingreso);
+			//docente.setFecha_ingreso(fecha_ingreso);
 			System.out.print("HOLA 2");
 			
 			DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
