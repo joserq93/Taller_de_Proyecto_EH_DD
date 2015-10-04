@@ -17,6 +17,7 @@ import edu.usmp.fia.taller.common.action.RequireLogin;
  */
 @WebServlet("/Registrar_Docente")
 public class Registrar_Docente extends ActionServlet {
+	
 	@HttpMethod(HttpMethodType.GET)
 	@RequireLogin(true)
 	public void registrarDocente() throws Exception {
