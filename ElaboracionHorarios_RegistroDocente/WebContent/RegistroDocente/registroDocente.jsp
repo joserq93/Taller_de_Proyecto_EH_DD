@@ -46,7 +46,7 @@
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
 					<li class="active"><a href="#">Malla curricular</a></li>
-					<li><a href="#">Registro de docentes</a></li>
+					<li><a href="Registrar_Docente?f=registrarDocente">Registro de docentes</a></li>
 					<li><a data-toggle="modal" href="#myModal">Elaboracion de Horarios</a></li>
 				</ul>
 			</div>
@@ -74,6 +74,43 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Inicio Modal Exportar excel jose-->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content" style="margin-top:50%;">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Sistema Elaboracion de Horarios</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>¿Desea agregar el archivo excel consolidado?.</p>
+		        </br>
+		        <center>
+				<form action="cargarExcels" method="get" >
+						<input type="hidden" name="f" value="leerExcel" /> <input type="hidden"
+			name="p" id="p" value="" />
+			        <button type="submit"  class="btn btn-success">Agregar archivo</button>
+			     </form>
+			     <form action="ElaboracionHorariosServlet" method="get" > 
+			     <input type="hidden" name="f" value="leerHorario" /> <input type="hidden"
+						name="p" id="p" value="" /> 
+			        <button type="submit"  class="btn btn-info">No agregar archivo</button>
+				</form>
+			     </center>
+			     <p>.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<!-- Fin Modal -->
+	
 
 
 	<script src="../Scripts/jquery-1.9.1.js"></script>
