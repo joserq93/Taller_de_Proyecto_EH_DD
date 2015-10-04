@@ -50,9 +50,6 @@
 				</ul>
 
 			</div>
-			<div class="span9">
-		      <!--Body content-->jhgjhgjh
-		    </div>
 		</div>
 	</div>
 
@@ -62,27 +59,19 @@
 		  <div class="modal-dialog">
 
 		    <!-- Modal content-->
-		    <div class="modal-content" style="margin-top:50%;">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">Sistema Elaboracion de Horarios</h4>
-		      </div>
-		      <div class="modal-body">
-		        <p>¿Desea agregar el archivo excel consolidado?.</p>
-		        </br>
-		        <center>
-			        <button type="button" class="btn btn-success">Agregar archivo</button>
-			        <button type="button" class="btn btn-info">No agregar archivo</button>
-			     </center>
-			     <p>.</p>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-
-		  </div>
-		</div>
+		    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<form action="<%=getServletContext().getContextPath() %>/AgregarAdministrador" method="post">
+				<p>Usuario: <input type="text" name="usuario" /></p>
+				<p>Clave: <input type="text" name="clave" /></p>
+				<p>Nombres: <input type="text" name="nombres" /></p>
+				<p>Apellidos: <input type="text" name="apellidos" /></p>
+				<p>Direccion: <input type="text" name="direccion" /></p>
+				<p>Celular: <input type="text" name="celular" /></p>
+				<p>Correo: <input type="text" name="correo" /></p>
+				<p>sueldo: <input type="text" name="sueldo" /></p>
+				<p><input type="submit"value="Agregar"></p>
+				</form>
+			</div>
 		<!-- Fin Modal -->
 
 	<script src="../Scripts/jquery-1.9.1.js"></script>
