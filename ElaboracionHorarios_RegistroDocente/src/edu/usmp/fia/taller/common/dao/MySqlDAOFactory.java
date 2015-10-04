@@ -12,17 +12,17 @@ import org.apache.log4j.Logger;
 
 
 
+
+
 import edu.usmp.fia.taller.common.dao.modules.DAOFactoryGeneral;
 import edu.usmp.fia.taller.common.dao.modules.MysqlFactoryGeneral;
-import edu.usmp.fia.taller.common.dao.modules.elaboracionhorario.MysqlFactoryElabHorarios;
 import edu.usmp.fia.taller.common.dao.modules.elaboracionhorario.DAOFactoryElabHorarios;
+import edu.usmp.fia.taller.common.dao.modules.elaboracionhorario.MysqlFactoryElabHorarios;
 import edu.usmp.fia.taller.common.dao.modules.mallacurricular.DAOFactoryMCurricular;
 import edu.usmp.fia.taller.common.dao.modules.mallacurricular.MySqlFactoryMCurricular;
 import edu.usmp.fia.taller.common.dao.modules.registro.docente.DAOFactoryRegDocente;
 import edu.usmp.fia.taller.common.dao.modules.registro.docente.MysqlFactoryRegDocente;
 import edu.usmp.fia.taller.common.util.ThreadUtil;
-
-
 
 
 public class MySqlDAOFactory extends DAOFactory {
@@ -76,7 +76,6 @@ public class MySqlDAOFactory extends DAOFactory {
 	public DAOFactoryGeneral getGeneral() { return new MysqlFactoryGeneral(); }
 	public DAOFactoryMCurricular getMallaCurricular() { return new MySqlFactoryMCurricular(); }
 	public DAOFactoryRegDocente getRegistroDocente() { return new MysqlFactoryRegDocente(); }
-	public DAOFactoryElabHorarios getElaboracionHorario() { return new MysqlFactoryElabHorarios(); }
-	
+	public DAOFactoryElabHorarios getElaboracionHorario() {return new MysqlFactoryElabHorarios();}
 	
 }

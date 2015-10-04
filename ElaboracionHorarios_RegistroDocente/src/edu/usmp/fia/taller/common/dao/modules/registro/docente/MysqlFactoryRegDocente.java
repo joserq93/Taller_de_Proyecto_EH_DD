@@ -10,6 +10,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 import edu.usmp.fia.taller.common.bean.Docente;
 import edu.usmp.fia.taller.common.bean.Persona;
+import edu.usmp.fia.taller.common.bean.Ubigeo;
 import edu.usmp.fia.taller.common.bean.User;
 import edu.usmp.fia.taller.common.bean.UserType;
 import edu.usmp.fia.taller.common.bean.UsuarioDetalle;
@@ -46,7 +47,87 @@ public class MysqlFactoryRegDocente extends MySqlDAOFactory implements DAOFactor
 		}
 		return docentes;
 	}
+	
+	@Override
+	public List<Ubigeo> getDepartamentos() throws Exception {
+		// TODO Auto-generated method stub
+		Connection oCn = null;
+		PreparedStatement oPs = null;
+		ResultSet oRs = null;
+		List<Ubigeo> ubigeos = new ArrayList<Ubigeo>();
+		Ubigeo ubigeo=null;
+		try {
+			oCn = (Connection) getConnection(); 
+			oPs = (PreparedStatement) oCn.prepareStatement("select * from ubigeo where codprov='00' and coddist='00'");
+			oRs = oPs.executeQuery();
+				while(oRs.next()){
+					ubigeo = new Ubigeo();
+					ubigeo.setCoddpto(oRs.getString("coddpto"));
+					ubigeo.setNombre(oRs.getString("nombre"));
+					ubigeos.add(ubigeo);
+				}
+			
+		} finally {
+			close(oRs);
+			close(oPs);
+			close(oCn);
+		}
+		return ubigeos;
+	}
 
+	@Override
+	public List<Ubigeo> getProvincias(String coddpto) throws Exception {
+		// TODO Auto-generated method stub
+				Connection oCn = null;
+				PreparedStatement oPs = null;
+				ResultSet oRs = null;
+				List<Ubigeo> ubigeos = new ArrayList<Ubigeo>();
+				Ubigeo ubigeo=null;
+				try {
+					oCn = (Connection) getConnection(); 
+					oPs = (PreparedStatement) oCn.prepareStatement("select * from ubigeo where coddpto='"+coddpto+"' and coddist='00'");
+					oRs = oPs.executeQuery();
+						while(oRs.next()){
+							ubigeo = new Ubigeo();
+							ubigeo.setCodprov(oRs.getString("codprov"));
+							ubigeo.setNombre(oRs.getString("nombre"));
+							ubigeos.add(ubigeo);
+						}
+					
+				} finally {
+					close(oRs);
+					close(oPs);
+					close(oCn);
+				}
+				return ubigeos;
+	}
+
+	@Override
+	public List<Ubigeo> getDistritos(String coddpto,String codprov) throws Exception {
+		// TODO Auto-generated method stub
+		Connection oCn = null;
+		PreparedStatement oPs = null;
+		ResultSet oRs = null;
+		List<Ubigeo> ubigeos = new ArrayList<Ubigeo>();
+		Ubigeo ubigeo=null;
+		try {
+			oCn = (Connection) getConnection(); 
+			oPs = (PreparedStatement) oCn.prepareStatement("select * from ubigeo where codprov='"+codprov+"' and coddpto='"+coddpto+"'");
+			oRs = oPs.executeQuery();
+				while(oRs.next()){
+					ubigeo = new Ubigeo();
+					ubigeo.setCoddist(oRs.getString("coddist"));
+					ubigeo.setNombre(oRs.getString("nombre"));
+					ubigeos.add(ubigeo);
+				}
+			
+		} finally {
+			close(oRs);
+			close(oPs);
+			close(oCn);
+		}
+		return ubigeos;
+	}
 
 
 }
