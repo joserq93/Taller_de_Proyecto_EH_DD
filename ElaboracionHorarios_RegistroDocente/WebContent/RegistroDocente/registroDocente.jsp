@@ -1,5 +1,5 @@
 <%@page import="edu.usmp.fia.taller.common.action.SessionParameters"%>
-<%@page import="edu.usmp.fia.taller.login.servlet.LoginServlet"%>
+<%@page import="edu.usmp.fia.taller.docente.servlet.DocenteServlet"%>
 <%@page import="edu.usmp.fia.taller.common.bean.Persona"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -50,10 +50,10 @@
 				</ul>
 
 			</div>
+			<div class="span9">
+		      <!--Body content-->jhgjhgjh
+		    </div>
 		</div>
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h2>Contenido</h2>
-			</div>
 	</div>
 
 
