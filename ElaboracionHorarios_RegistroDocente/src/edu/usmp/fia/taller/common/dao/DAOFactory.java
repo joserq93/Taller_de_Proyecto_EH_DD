@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import edu.usmp.fia.taller.common.dao.modules.DAOFactoryGeneral;
 import edu.usmp.fia.taller.common.dao.modules.mallacurricular.DAOFactoryMCurricular;
 import edu.usmp.fia.taller.common.dao.modules.registro.docente.DAOFactoryRegDocente;
+import edu.usmp.fia.taller.common.dao.modules.elaboracionhorario.DAOFactoryElabHorarios;
 
 
 public abstract class DAOFactory {
@@ -20,6 +21,7 @@ public abstract class DAOFactory {
 	public abstract DAOFactoryGeneral getGeneral();
 	public abstract DAOFactoryMCurricular getMallaCurricular();
 	public abstract DAOFactoryRegDocente getRegistroDocente();
+	public abstract DAOFactoryElabHorarios getElaboracionHorario();
 	
 	
 	public static DAOFactory getDAOFactory(int factory){

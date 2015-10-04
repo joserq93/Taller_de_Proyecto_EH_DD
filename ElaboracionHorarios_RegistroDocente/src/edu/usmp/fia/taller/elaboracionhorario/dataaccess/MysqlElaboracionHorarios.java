@@ -9,10 +9,6 @@ import com.mysql.jdbc.PreparedStatement;
 
 import edu.usmp.fia.taller.common.bean.Curso;
 import edu.usmp.fia.taller.common.bean.Docente;
-import edu.usmp.fia.taller.common.bean.Persona;
-import edu.usmp.fia.taller.common.bean.User;
-import edu.usmp.fia.taller.common.bean.UserType;
-import edu.usmp.fia.taller.common.bean.UsuarioDetalle;
 import edu.usmp.fia.taller.common.dao.MySqlDAOFactory;
 import edu.usmp.fia.taller.elaboracionhorario.dataaccess.interfaces.DAOElaboracionHorario;
 
