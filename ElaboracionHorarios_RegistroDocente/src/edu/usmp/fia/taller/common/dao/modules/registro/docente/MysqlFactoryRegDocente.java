@@ -58,7 +58,7 @@ public class MysqlFactoryRegDocente extends MySqlDAOFactory implements DAOFactor
 		Ubigeo ubigeo=null;
 		try {
 			oCn = (Connection) getConnection(); 
-			oPs = (PreparedStatement) oCn.prepareStatement("select * from ubigeo where codprov='00' and coddist='00'");
+			oPs = (PreparedStatement) oCn.prepareStatement("select * from ubigeo where codprov='00' and coddist='00' order by nombre");
 			oRs = oPs.executeQuery();
 				while(oRs.next()){
 					ubigeo = new Ubigeo();
@@ -85,7 +85,7 @@ public class MysqlFactoryRegDocente extends MySqlDAOFactory implements DAOFactor
 				Ubigeo ubigeo=null;
 				try {
 					oCn = (Connection) getConnection(); 
-					oPs = (PreparedStatement) oCn.prepareStatement("select * from ubigeo where coddpto='"+coddpto+"' and coddist='00'");
+					oPs = (PreparedStatement) oCn.prepareStatement("select * from ubigeo where coddpto='"+coddpto+"' and coddist='00' and codprov<>'00' order by nombre");
 					oRs = oPs.executeQuery();
 						while(oRs.next()){
 							ubigeo = new Ubigeo();
@@ -112,7 +112,7 @@ public class MysqlFactoryRegDocente extends MySqlDAOFactory implements DAOFactor
 		Ubigeo ubigeo=null;
 		try {
 			oCn = (Connection) getConnection(); 
-			oPs = (PreparedStatement) oCn.prepareStatement("select * from ubigeo where codprov='"+codprov+"' and coddpto='"+coddpto+"'");
+			oPs = (PreparedStatement) oCn.prepareStatement("select * from ubigeo where codprov='"+codprov+"' and coddpto='"+coddpto+"' and coddist<>'00' order by nombre");
 			oRs = oPs.executeQuery();
 				while(oRs.next()){
 					ubigeo = new Ubigeo();

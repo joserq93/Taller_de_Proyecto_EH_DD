@@ -21,7 +21,7 @@ import com.google.gson.Gson;
 @WebServlet("/ubigeo")
 public class UbigeoServlet extends ActionServlet {
 
-	@HttpMethod(HttpMethodType.GET)
+	@HttpMethod(HttpMethodType.POST)
 	@RequireLogin(false)
 	public void listarDepartamentos() throws Exception {
 		DAOFactory oDAOFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
@@ -34,7 +34,7 @@ public class UbigeoServlet extends ActionServlet {
 		
 		out.print(json.toString());
 	}
-	@HttpMethod(HttpMethodType.GET)
+	@HttpMethod(HttpMethodType.POST)
 	@RequireLogin(false)
 	public void listarProvincias() throws Exception {
 		String coddpto = request.getParameter("coddpto");
@@ -48,7 +48,7 @@ public class UbigeoServlet extends ActionServlet {
 		
 		out.print(json.toString());
 	}
-	@HttpMethod(HttpMethodType.GET)
+	@HttpMethod(HttpMethodType.POST)
 	@RequireLogin(false)
 	public void listarDistritos() throws Exception {
 		String coddpto = request.getParameter("coddpto");
