@@ -1,5 +1,5 @@
 <%@page import="edu.usmp.fia.taller.common.action.SessionParameters"%>
-
+<%@page import="edu.usmp.fia.taller.docente.servlet.Listar_DocenteServlet"%>
 <%@page import="edu.usmp.fia.taller.common.bean.Persona"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -12,6 +12,7 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <link href="css/dashboard.css" rel="stylesheet" />
+ <script src="js/combos.js"></script>
 <title>Insert title here</title>
 </head>
 <%
@@ -45,10 +46,9 @@
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
 					<li class="active"><a href="#">Malla curricular</a></li>
-					<li><a href="#">Registro de docentes</a></li>
+					<li><a href="Registrar_Docente?f=registrarDocente">Registro de docentes</a></li>
 					<li><a data-toggle="modal" href="#myModal">Elaboracion de Horarios</a></li>
 				</ul>
-
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<a data-toggle="modal" href="#RegistrarDocenteModal">Registrar Docente</a>
@@ -82,20 +82,27 @@
 						<p>Datos de Nacimiento</p>
 				
 				<p>Fecha de Nacimiento: <input type="text" name="fechanacimiento" /></p>
-				<p>Departamento: <select size="1" name="departamento1" >
-	                	<option value="1">Lima</option>
-	                    <option value="2">Piura</option>
-	                     </select>
-				<p>Provincia: <select size="1" name="provincia1" >
-	                	<option value="1">Canta</option>
-	                    <option value="2">Cañete</option>
-	                          </select>
-				<p>Distrito: <select size="1" name="distrito1" >
-	                	<option value="1">Canta</option>
-	                    <option value="2">Asia</option>
-	                         </select>
-	                     
-	                     <p>Direccion</p>
+				
+			  <div class="form-group">
+			  <label for="combo_departamento">Departamento</label>
+			  <select id="combo_departamento" class="form-control" name="departamento1">
+				  <option>Seleccionar</option>
+			  </select>
+			  </div>
+			  <div class="form-group">
+			  <label for="combo_provincias">Provincia</label>
+			  <select id="combo_provincias" class="form-control" disabled="true" name="provincia1">
+				  <option>Seleccionar</option>
+			  </select>
+			  </div>
+			  <div class="form-group">
+			  <label for="combo_distritos">Distrito</label>
+			  <select id="combo_distritos" class="form-control" disabled="true" name="distrito1">
+				  <option>Seleccionar</option>
+			  </select>
+			  </div>
+			
+	         <p>Direccion</p>
 				
 				
 				<p>Departamento: <select size="1" name="departamento2" >
@@ -221,11 +228,9 @@
 				</form>
 			</div>
 	</div>
-
-				<!-- Inicio Modal -->
+				<!-- Inicio Modal importar excel jose-->
 		<div id="RegistrarDocenteModal" class="modal fade" role="dialog">
 		  <div class="modal-dialog">
-
 		    <!-- Modal content-->
 		    <div class="modal-content" style="margin-top:50%;">
 		      <div class="modal-header">
@@ -234,7 +239,6 @@
 		      </div>
 		      <div class="modal-body">
 		        		    
-			
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -244,6 +248,45 @@
 		  </div>
 		</div>
 		<!-- Fin Modal -->
+		
+		
+		<!-- Inicio Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content" style="margin-top:50%;">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Sistema Elaboracion de Horarios</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>¿Desea agregar el archivo excel consolidado?.</p>
+		        </br>
+		        <center>
+				<form action="cargarExcels" method="get" >
+						<input type="hidden" name="f" value="leerExcel" /> <input type="hidden"
+			name="p" id="p" value="" />
+			        <button type="submit"  class="btn btn-success">Agregar archivo</button>
+			     </form>
+			     <form action="ElaboracionHorariosServlet" method="get" > 
+			     <input type="hidden" name="f" value="leerHorario" /> <input type="hidden"
+						name="p" id="p" value="" /> 
+			        <button type="submit"  class="btn btn-info">No agregar archivo</button>
+				</form>
+			     </center>
+			     <p>.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<!-- Fin Modal -->
+	
+
 
 
 	<script src="../Scripts/jquery-1.9.1.js"></script>

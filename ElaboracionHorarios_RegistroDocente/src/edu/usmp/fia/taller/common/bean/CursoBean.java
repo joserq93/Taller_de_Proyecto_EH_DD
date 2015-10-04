@@ -1,7 +1,7 @@
 package edu.usmp.fia.taller.common.bean;
 
-public class Curso {
-	
+public class CursoBean {
+
 	private int idCurso;
 	private String nombreCurso;
 	private String tipoCurso;
@@ -34,7 +34,4 @@ public class Curso {
 	
 	
 	
-	
-	
-
 }

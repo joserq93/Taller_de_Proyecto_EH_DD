@@ -45,18 +45,19 @@
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
 					<li class="active"><a href="#">Malla curricular</a></li>
-					<li><a href="Registrar_Docente?f=RegistrarDocente">Registro de docentes</a></li>
+					<li><a href="Registrar_Docente?f=registrarDocente">Registro de docentes</a></li>
 					<li><a data-toggle="modal" href="#myModal">Elaboracion de Horarios</a></li>
 				</ul>
 
 			</div>
-		</div>
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h2>Contenido</h2>
 			</div>
+		</div>
+
 	</div>
 
-
+	
 		<!-- Inicio Modal -->
 		<div id="myModal" class="modal fade" role="dialog">
 		  <div class="modal-dialog">
@@ -71,8 +72,16 @@
 		        <p>¿Desea agregar el archivo excel consolidado?.</p>
 		        </br>
 		        <center>
-			        <button type="button" class="btn btn-success">Agregar archivo</button>
-			        <button type="button" class="btn btn-info">No agregar archivo</button>
+				<form action="cargarExcels" method="get" >
+						<input type="hidden" name="f" value="leerExcel" /> <input type="hidden"
+			name="p" id="p" value="" />
+			        <button type="submit"  class="btn btn-success">Agregar archivo</button>
+			     </form>
+			     <form action="ElaboracionHorariosServlet" method="get" > 
+			     <input type="hidden" name="f" value="leerHorario" /> <input type="hidden"
+						name="p" id="p" value="" /> 
+			        <button type="submit"  class="btn btn-info">No agregar archivo</button>
+				</form>
 			     </center>
 			     <p>.</p>
 		      </div>
