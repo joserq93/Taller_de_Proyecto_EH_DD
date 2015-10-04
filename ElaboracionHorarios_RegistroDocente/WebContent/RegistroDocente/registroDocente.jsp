@@ -1,5 +1,5 @@
 <%@page import="edu.usmp.fia.taller.common.action.SessionParameters"%>
-<%@page import="edu.usmp.fia.taller.login.servlet.LoginServlet"%>
+<%@page import="edu.usmp.fia.taller.docente.servlet.DocenteServlet"%>
 <%@page import="edu.usmp.fia.taller.common.bean.Persona"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -13,17 +13,6 @@
  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <link href="css/dashboard.css" rel="stylesheet" />
 <title>Insert title here</title>
-<script type="text/javascript">
- function llamarExcel() {
-	 alert("hola mundo")
-	 
-	 document.location.href = '${pageContext.request.contextPath}/CargarExcel';
-	
-}
- function llamarHorario () {
-	alert("holamundo2")
-}
-</script>
 </head>
 <%
 	Persona oPersona = (Persona) request.getSession(false)
@@ -56,55 +45,33 @@
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
 					<li class="active"><a href="#">Malla curricular</a></li>
-					<li><a href="Registrar_Docente?p='RegistrarDocente'">Registro de docentes</a></li>
+					<li><a href="#">Registro de docentes</a></li>
 					<li><a data-toggle="modal" href="#myModal">Elaboracion de Horarios</a></li>
 				</ul>
 
 			</div>
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h2>Contenido</h2>
-			</div>
 		</div>
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h2>Contenido</h2>
-			</div>
 	</div>
 
-	
+
 		<!-- Inicio Modal -->
 		<div id="myModal" class="modal fade" role="dialog">
 		  <div class="modal-dialog">
 
 		    <!-- Modal content-->
-		    <div class="modal-content" style="margin-top:50%;">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">Sistema Elaboracion de Horarios</h4>
-		      </div>
-		      <div class="modal-body">
-		        <p>¿Desea agregar el archivo excel consolidado?.</p>
-		        </br>
-		        <center>
-				<form action="cargarExcels" method="get" >
-						<input type="hidden" name="f" value="leerExcel" /> <input type="hidden"
-			name="p" id="p" value="" />
-			        <button type="submit"  class="btn btn-success">Agregar archivo</button>
-			     </form>
-			     <form action="cargarHorario" method="get" > 
-			     <input type="hidden" name="f" value="signup" /> <input type="hidden"
-						name="p" id="p" value="" /> 
-			        <button type="submit"  class="btn btn-info">No agregar archivo</button>
+		    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<form action="<%=getServletContext().getContextPath() %>/AgregarAdministrador" method="post">
+				<p>Usuario: <input type="text" name="usuario" /></p>
+				<p>Clave: <input type="text" name="clave" /></p>
+				<p>Nombres: <input type="text" name="nombres" /></p>
+				<p>Apellidos: <input type="text" name="apellidos" /></p>
+				<p>Direccion: <input type="text" name="direccion" /></p>
+				<p>Celular: <input type="text" name="celular" /></p>
+				<p>Correo: <input type="text" name="correo" /></p>
+				<p>sueldo: <input type="text" name="sueldo" /></p>
+				<p><input type="submit"value="Agregar"></p>
 				</form>
-			     </center>
-			     <p>.</p>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-
-		  </div>
-		</div>
+			</div>
 		<!-- Fin Modal -->
 
 	<script src="../Scripts/jquery-1.9.1.js"></script>
