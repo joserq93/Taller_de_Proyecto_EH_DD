@@ -36,7 +36,7 @@ public class MySqlDAOFactory extends DAOFactory {
 				String userName = null;
 				String password = null;
 				///String url = "jdbc:mysql://localhost:3306/bd_taller_proyectos";
-				String url = "jdbc:mysql://localhost:3306/bdtaller201502";
+				String url = "jdbc:mysql://localhost:3306/bd_taller_proyectos";
 				Class.forName ("com.mysql.jdbc.Driver").newInstance();
 				
 				switch (ThreadUtil.getCallerModule()) {
