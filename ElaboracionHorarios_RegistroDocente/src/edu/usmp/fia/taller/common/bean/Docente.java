@@ -25,7 +25,51 @@ public class Docente {
 	private char sexo;
 	private Date fecha_nacimiento;
 	private String referencia_direccion;
+	private String tipo_documento;
+	private String grado_academico;
+	private String profecion;
+	private String especialidad;
+	private String institucion;
+	private Date fecha_ingreso;
 	
+	
+	
+	public String getTipo_documento() {
+		return tipo_documento;
+	}
+	public void setTipo_documento(String tipo_documento) {
+		this.tipo_documento = tipo_documento;
+	}
+	public String getGrado_academico() {
+		return grado_academico;
+	}
+	public void setGrado_academico(String grado_academico) {
+		this.grado_academico = grado_academico;
+	}
+	public String getProfecion() {
+		return profecion;
+	}
+	public void setProfecion(String profecion) {
+		this.profecion = profecion;
+	}
+	public String getEspecialidad() {
+		return especialidad;
+	}
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
+	}
+	public String getInstitucion() {
+		return institucion;
+	}
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
+	}
+	public Date getFecha_ingreso() {
+		return fecha_ingreso;
+	}
+	public void setFecha_ingreso(Date fecha_ingreso) {
+		this.fecha_ingreso = fecha_ingreso;
+	}
 	public int getId_docente() {
 		return id_docente;
 	}

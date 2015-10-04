@@ -21,7 +21,7 @@ public class Registrar_Docente extends ActionServlet {
 	@RequireLogin(true)
 	public void RegistrarDocente() throws Exception {
 		System.out.println("ENTRE AL GET");
-		request.getServletContext().getRequestDispatcher("/ElaboracionHorarios/cargarExcel.jsp").forward(request, response);
+		request.getServletContext().getRequestDispatcher("/RegistroDocente/registroDocente.jsp").forward(request, response);
 	}
 	
 

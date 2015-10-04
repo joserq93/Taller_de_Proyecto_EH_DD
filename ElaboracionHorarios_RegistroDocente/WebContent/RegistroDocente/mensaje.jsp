@@ -52,7 +52,11 @@
 			</div>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<h2>Contenido</h2>
+			<%
+	String mensaje = (String)request.getAttribute("mensaje");
+%>
+<h2>Resultado de la operación</h2>
+<%=mensaje %>
 			</div>
 	</div>
 
