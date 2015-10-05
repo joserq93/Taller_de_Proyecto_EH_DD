@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<link href="css/boostrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="ElaboracionHorarios/css/bootstrap.css" rel="stylesheet">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <link href="css/dashboard.css" rel="stylesheet" />
@@ -63,7 +63,7 @@
 		  <div class="modal-dialog">
 
 		    <!-- Modal content-->
-		    <div class="modal-content" style="margin-top:50%;">
+		    <div class="modal-content" style="margin-top:150px;">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        <h4 class="modal-title">Sistema Elaboracion de Horarios</h4>
@@ -75,12 +75,12 @@
 				<form action="cargarExcels" method="get" >
 						<input type="hidden" name="f" value="leerExcel" /> <input type="hidden"
 			name="p" id="p" value="" />
-			        <button type="submit"  class="btn btn-success">Agregar archivo</button>
+			        <button type="submit"  class="btn btn-success" style:"float:left;">Agregar archivo</button>
 			     </form>
 			     <form action="ElaboracionHorariosServlet" method="get" > 
 			     <input type="hidden" name="f" value="leerHorario" /> <input type="hidden"
 						name="p" id="p" value="" /> 
-			        <button type="submit"  class="btn btn-info">No agregar archivo</button>
+			        <button type="submit"  class="btn btn-info" style:"float:rigth;">No agregar archivo</button>
 				</form>
 			     </center>
 			     <p>.</p>

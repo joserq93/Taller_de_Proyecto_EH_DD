@@ -26,6 +26,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 
 import edu.usmp.fia.taller.common.action.ActionServlet;
+import edu.usmp.fia.taller.common.action.Default;
 import edu.usmp.fia.taller.common.action.HttpMethod;
 import edu.usmp.fia.taller.common.action.HttpMethodType;
 import edu.usmp.fia.taller.common.action.RequireLogin;
@@ -47,10 +48,15 @@ public class CargarExcel extends ActionServlet  {
 	}
 	
 	@HttpMethod(HttpMethodType.POST)
+	@Default
 	@RequireLogin(true)
 	public void cargarExcel() throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("ENTRE AL POST");
+		System.out.println("blabla: "+request.getContentType());
+		System.out.println("blbla2: "+request.getParameter("filetoupload"));
+		System.out.println("blablb3: "+request.getInputStream());
+		System.out.println("blablb4: "+request.getContentLength());
 				response.setContentType("text/html");
 				   PrintWriter out = response.getWriter();
 				String saveFile="";
@@ -94,7 +100,7 @@ public class CargarExcel extends ActionServlet  {
 			
 				}
 				System.out.println("no llege antes del read");
-				request.getRequestDispatcher("ElaboracionHorarios/cargarExcel.jsp").forward(request, response);
+				response.sendRedirect("ElaboracionHorariosServlet?f=leerHorario");
 	}
 	
 	
@@ -104,7 +110,7 @@ public class CargarExcel extends ActionServlet  {
 		List<Curso> listaCurso = new ArrayList<Curso>();
 		DAOFactory oDAOFactory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 		listaCurso= oDAOFactory.getElaboracionHorario().elabHorarios().getCursoAll();
-		System.out.println(listaCurso.size());
+		System.out.println("listaCurso: "+listaCurso.size());
 		HorariosBean horarios=null;
 		List<HorariosBean> listaHorario= new ArrayList<HorariosBean>();
 		try {
@@ -126,7 +132,7 @@ public class CargarExcel extends ActionServlet  {
             	
             	horarios= new HorariosBean();
                 row = hssfSheet.getRow(i);        
-                if(!row.getCell(0).getStringCellValue().equals(" ")){
+                if(!row.getCell(0).getStringCellValue().equals("")){
 	            	horarios.setCODFAC(row.getCell(0).getStringCellValue());
 	            	horarios.setC01(row.getCell(1).getStringCellValue());
 	            	horarios.setCICEST(row.getCell(2).getStringCellValue());
@@ -150,15 +156,12 @@ public class CargarExcel extends ActionServlet  {
 	            	
 	            	// inicio validar si los cursos estan como esta en el excel
 	            	for(int z=0;z<listaCurso.size();z++){
-	            		System.out.println(horarios.getCURSO()+"=="+listaCurso.get(z).getNombreCurso());
+	            		
 	            		if(horarios.getCURSO().equalsIgnoreCase(listaCurso.get(z).getNombreCurso())){
 	            			System.out.println("CURSOS IGUAL: "+horarios.getCURSO()+"=="+listaCurso.get(z).getNombreCurso());
 	            		}
 	            	}
 	            	
-	            	// fin de esto
-	            	
-
 	                listaHorario.add(horarios);    
 	                
                 }else{

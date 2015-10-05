@@ -81,12 +81,11 @@
 			<h2>Contenido</h2>
 				<div class="fw-container">
 		<form action="cargarExcels" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="f" value="cargarExcel" /> <input type="hidden"
-			name="p" id="p" value="" />
+	
 			
 			Select File : <input type="file" name="filetoupload">
 			<br/>
-			<input type="submit" class="btn btn-danger" value="Subir Archivo">
+			<input type="submit" class="btn btn-info" value="Subir Archivo">
 		</form>
 	</div>
 			</div>
@@ -110,7 +109,7 @@
 		        <center>
 				<form action="cargarExcels" method="get" >
 						<input type="hidden" name="f" value="leerExcel" /> <input type="hidden"
-			name="p" id="p" value="" />
+							name="p" id="p" value="" />
 			        <button type="submit"  class="btn btn-success">Agregar archivo</button>
 			     </form>
 			     <form action="ElaboracionHorariosServlet" method="get" > 

@@ -24,9 +24,9 @@ public class MysqlElaboracionHorarios extends MySqlDAOFactory implements DAOElab
 		List <Curso> listCurso= new ArrayList<Curso>();
 		try {
 			oCn = (Connection) getConnection(); 
-			oPs = (PreparedStatement) oCn.prepareStatement("SELECT * FROM t_curso;");
+			oPs = (PreparedStatement) oCn.prepareStatement("SELECT * FROM t_curso");
 			oRs = oPs.executeQuery();
-			if(oRs.next()) {
+			while(oRs.next()) {
 				objCurso = new Curso();
 				objCurso.setIdCurso(oRs.getInt("id"));
 				objCurso.setNombreCurso(oRs.getString("nombre"));

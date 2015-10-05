@@ -19,29 +19,107 @@
     <title>Elaboración de Horarios</title>
 
     <link href="ElaboracionHorarios/css/bootstrap.css" rel="stylesheet">
-
     <link href="ElaboracionHorarios/css/signin.css" rel="stylesheet">
 
     <script src="ElaboracionHorarios/js/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="ElaboracionHorarios/js/bootstrap.min.js"></script>
+    <link href="css/dashboard.css" rel="stylesheet" />
 <style>
 .hora{
   background-color:#inherit;
+  color: white;
   font-size;12px;
 }
 .hora-activa{
   background-color: #5C9FB8;
+  color: white;
   cursor:pointer;
 }
 .con-curso{
   background-color: #5C9FB8;
+  color: white;
 }
 </style>
   </head>
-
+  <%@page import="edu.usmp.fia.taller.common.action.SessionParameters"%>
+<%@page import="edu.usmp.fia.taller.login.servlet.LoginServlet"%>
+<%@page import="edu.usmp.fia.taller.common.bean.Persona"%>
+<%
+	Persona oPersona = (Persona) request.getSession(false)
+			.getAttribute(SessionParameters.PERSONA.text());
+%>
   <body>
-  <h1>Usted está trabajando en la versión: <%=version %></h1>
-<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Taller</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><%= oPersona.getNombre1() + " " + oPersona.getApePaterno()%></a></li>
+				<li><a href="login?f=logout">Salir</a></li>
+			</ul>
+
+		</div>
+	</div>
+	</nav>
+  	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="#">Malla curricular</a></li>
+					<li><a href="Registrar_Docente?f=registrarDocente">Registro de docentes</a></li>
+					<li><a data-toggle="modal" href="#myModal2">Elaboracion de Horarios</a></li>
+				</ul>
+
+			</div>
+			
+<!-- Inicio Modal -->
+		<div id="myModal2" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content" style="margin-top:50%;">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Sistema Elaboracion de Horarios</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>¿Desea agregar el archivo excel consolidado?.</p>
+		        </br>
+		        <center>
+				<form action="cargarExcels" method="get" >
+						<input type="hidden" name="f" value="leerExcel" /> <input type="hidden"
+			name="p" id="p" value="" />
+			        <button type="submit"  class="btn btn-success" style:"float:left;">Agregar archivo</button>
+			     </form>
+			     <form action="ElaboracionHorariosServlet" method="get" > 
+			     <input type="hidden" name="f" value="leerHorario" /> <input type="hidden"
+						name="p" id="p" value="" /> 
+			        <button type="submit"  class="btn btn-info" style:"float:right;">No agregar archivo</button>
+				</form>
+			     </center>
+			     <p>.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+		<!-- Fin Modal -->
+
+  
+  
+  <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="list-group profesores">
@@ -50,24 +128,27 @@
     </div>
   </div>
 </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <h1>Usted está trabajando en la versión: <%=version %></h1>
+
 
     <div style="padding:0 100px 0 100px;">
       <div class="row" style="text-align:center;">
         <ul class="nav nav-tabs">
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("01")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=01">Ciclo I</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("02")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=02">Ciclo II</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("03")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=03">Ciclo III</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("04")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=04">Ciclo IV</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("05")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=05">Ciclo V</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("06")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=06">Ciclo VI</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("07")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=07">Ciclo VII</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("08")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=08">Ciclo VIII</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("09")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=09">Ciclo IX</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("10")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=10">Ciclo X</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("E1")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=E1">Electivos 1</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("E2")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=E2">Electivos 2</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("E3")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=E3">Electivos 3</a></li>
-		  <li role="presentation" <% if(cycle.equalsIgnoreCase("E4")){ %>class="active"<% } %>><a href="?f=leerHorario&cycle=E4">Electivos 4</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("01")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=01">Ciclo I</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("02")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=02">Ciclo II</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("03")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=03">Ciclo III</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("04")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=04">Ciclo IV</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("05")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=05">Ciclo V</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("06")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=06">Ciclo VI</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("07")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=07">Ciclo VII</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("08")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=08">Ciclo VIII</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("09")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=09">Ciclo IX</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("10")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=10">Ciclo X</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("E1")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=E1">Electivos 1</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("E2")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=E2">Electivos 2</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("E3")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=E3">Electivos 3</a></li>
+		  <li role="presentation" <% if(cycle.equalsIgnoreCase("E4")){ %>class="active"<% } %>><a href="ElaboracionHorariosServlet?f=leerHorario&cycle=E4">Electivos 4</a></li>
 		</ul>
       </div>
       <div class="row" style="text-align:center;">
@@ -77,8 +158,8 @@
       </div>
       <br clear="all" />
       <div class="row">
-        <div class="col-md-2 cursos" style=" overflow: auto; position: relative;"></div>
-        <div class="col-md-10">
+        <div class="col-md-3 cursos" style=" overflow: auto; position: relative;"></div>
+        <div class="col-md-9">
            <table class="table table-striped table-bordered">
               <tr>
                   <th width="30px">Horas</th>
@@ -316,10 +397,16 @@
 		</form>
       </div>
     </div> <!-- /container -->
-    
+  </div>
+	
+		</div>
+
+	</div>
+
+	
 <script type="text/javascript">
 $(".cicloo").on("change", function(){
-	window.location.href = "?f=leerHorario&cycle="+$(this).val();
+	window.location.href = "ElaboracionHorariosServlet?f=leerHorario&cycle="+$(this).val();
 });
 
 var horasHorarios = [];
@@ -408,7 +495,7 @@ $(".hora").on("click", function(e){
   {
     if(horita > 0)
     {
-      $(this).html(nombre+'<br/><br/>'+profesoor+"<br/><br/><select name='aulas'></select>");
+      $(this).html(nombre+'<br/><br/>'+profesoor+"<br/><br/><select name='aulas'style='color: black;'></select>");
       $(this).addClass("con-curso");
       $(this).attr("profesor-asignado", profesoor);
       $(this).attr("curso-asignado", nombre);
@@ -417,7 +504,7 @@ $(".hora").on("click", function(e){
       horasHorarios[horasHorarios.length] = nombre+'=='+profesoor+'=='+$(this).attr("hora-data");
       
       el = $(this);
-      $.post("G3_GetDataAula", {horas: $(this).attr("hora-data")}, function(data){
+      $.post("ElaboracionHorariosServlet?f=leerSeccion", {horas: $(this).attr("hora-data")}, function(data){
     	  	var html = '';
     	  	json = JSON.parse(data);
     	    $.each(json.aulas, function(i, o){

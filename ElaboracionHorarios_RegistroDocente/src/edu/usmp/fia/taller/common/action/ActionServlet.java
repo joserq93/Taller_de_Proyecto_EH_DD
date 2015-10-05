@@ -43,6 +43,8 @@ public class ActionServlet extends HttpServlet {
 		String oStrMethod = null;
 		try {
 			oStrMethod = request.getParameter("f");
+			System.out.println("paraemtro f: "+oStrMethod);
+
 			if(oStrMethod==null || oStrMethod.trim().length()==0) {
 				List<Method> oListMethod = getMethodsAnnotatedWith(this.getClass(), Default.class);
 				if(oListMethod!=null && oListMethod.size()>0) {

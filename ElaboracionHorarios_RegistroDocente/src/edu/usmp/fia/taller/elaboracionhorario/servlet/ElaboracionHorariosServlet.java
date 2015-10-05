@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import com.mysql.jdbc.MySQLConnection;
 
 import edu.usmp.fia.taller.common.action.ActionServlet;
+import edu.usmp.fia.taller.common.action.Default;
 import edu.usmp.fia.taller.common.action.HttpMethod;
 import edu.usmp.fia.taller.common.action.HttpMethodType;
 import edu.usmp.fia.taller.common.action.RequireLogin;
@@ -35,6 +36,7 @@ import edu.usmp.fia.taller.common.util.ThreadUtil;
 
 @WebServlet("/ElaboracionHorariosServlet")
 public class ElaboracionHorariosServlet extends  ActionServlet  {
+
 
 	@HttpMethod(HttpMethodType.GET)
 	@RequireLogin(true)
@@ -279,7 +281,41 @@ public class ElaboracionHorariosServlet extends  ActionServlet  {
 		}
 	}
 	
+	@HttpMethod(HttpMethodType.POST)
+	@RequireLogin(true)
+	public void leerSeccion() throws Exception{
+		PrintWriter out = response.getWriter();
+		try
+		{
+			String horas = request.getParameter("horas");
+			
+			String[] hArray = horas.split("-");
+			
+			String query = "SELECT * FROM t_disponibilidad_aula a INNER JOIN t_aula b ON a.aula_id = b.id INNER JOIN t_pabellon c ON c.id = b.pabellon_id WHERE dia_id = "+hArray[0]+" AND hora_id = "+hArray[1];
+			//out.print(query);
 
+			Connection con = (Connection) getConnection();
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+						
+			JSONArray aulas = new JSONArray();
+			while(rs.next())
+			{
+				Map<String, String> detail = new HashMap<String, String>();
+				detail.put("id", rs.getString("id"));
+				detail.put("data", rs.getString("abreviatura")+"-"+rs.getString("descripcion")+" Cap: "+rs.getString("capacidad"));
+				
+				aulas.put(detail);
+			}
+			
+			JSONObject json = new JSONObject();
+		    json.put("aulas", aulas);
+		  	out.print(json.toString() );
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
 
 	@HttpMethod(HttpMethodType.GET)
 	@RequireLogin(true)
