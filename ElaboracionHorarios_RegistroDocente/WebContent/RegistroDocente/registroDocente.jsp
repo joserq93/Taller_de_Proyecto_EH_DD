@@ -133,27 +133,27 @@
 				</div>
 				
 			  <div class="form-group">
-			  <label for="combo_departamento" class="col-lg-1 contro1-label">Departamento:</label>
+			  <label for="combo_departamentos_1" class="col-lg-1 contro1-label">Departamento:</label>
 			  <div class="col-lg-10">
-			  <select id="combo_departamento" class="form-control" name="departamento1" style="width:150px">
+			  <select id="combo_departamentos_1" class="form-control" name="departamento1" style="width:150px">
 				  <option>Seleccionar</option>
 			  </select>
 			  </div>
 			  </div>
 			  
 			  <div class="form-group">
-			  <label for="combo_provincias" class="col-lg-1 contro1-label">Provincia</label>
+			  <label for="combo_provincias_1" class="col-lg-1 contro1-label">Provincia</label>
 			   <div class="col-lg-10">
-			  <select id="combo_provincias" class="form-control" disabled="true" name="provincia1" style="width:150px">
+			  <select id="combo_provincias_1" class="form-control" disabled="true" name="provincia1" style="width:150px">
 				  <option>Seleccionar</option>
 			  </select>
 			  </div>
 			  </div>
 			  
 			  <div class="form-group">
-			  <label for="combo_distritos" class="col-lg-1 contro1-label">Distrito</label>
+			  <label for="combo_distritos_1" class="col-lg-1 contro1-label">Distrito</label>
 			   <div class="col-lg-10">
-			  <select id="combo_distritos" class="form-control" disabled="true" name="distrito1" style="width:150px">
+			  <select id="combo_distritos_1" class="form-control" disabled="true" name="distrito1" style="width:150px">
 				  <option>Seleccionar</option>
 			  </select>
 			  </div>
@@ -165,35 +165,32 @@
 			  <fieldset>
 			 <legend align= "left" style="width:400px">Direccion</legend>
 				
-				<div class="form-group">
-				 <label for="combo_departamento" class="col-lg-1 contro1-label">Departamento:</label>
-				 <div class="col-lg-10">
-				  <select size="1" name="departamento2" style="width:150px">
-	                	<option value="1">Lima</option>
-	                    <option value="2">Piura</option>
-	                     </select>
-	              </div>
-	              </div>
-	             
-	              <div class="form-group">
-				 <label for="combo_provincia" class="col-lg-1 contro1-label">Provincia:</label>
-				 <div class="col-lg-10">
-				 <select size="1" name="provincia2" style="width:150px">
-	                	<option value="1">Canta</option>
-	                    <option value="2">Cañete</option>
-	                    </select>
-	               </div>
-	               </div>
-	                          
-				 <div class="form-group">
-				 <label for="combo_distrito" class="col-lg-1 contro1-label">Distrito:</label>
-				<div class="col-lg-10">
-				 <select size="1" name="distrito2" style="width:150px">
-	                	<option value="1">Canta</option>
-	                    <option value="2">Asia</option>
-	                    </select>
-	                    </div>
-	                    </div>
+			 <div class="form-group">
+			  <label for="combo_departamentos_2" class="col-lg-1 contro1-label">Departamento:</label>
+			  <div class="col-lg-10">
+			  <select id="combo_departamentos_2" class="form-control" name="departamento2" style="width:150px">
+				  <option>Seleccionar</option>
+			  </select>
+			  </div>
+			  </div>
+			  
+			  <div class="form-group">
+			  <label for="combo_provincias_2" class="col-lg-1 contro1-label">Provincia</label>
+			   <div class="col-lg-10">
+			  <select id="combo_provincias_2" class="form-control" disabled="true" name="provincia2" style="width:150px">
+				  <option>Seleccionar</option>
+			  </select>
+			  </div>
+			  </div>
+			  
+			  <div class="form-group">
+			  <label for="combo_distritos_2" class="col-lg-1 contro1-label">Distrito</label>
+			   <div class="col-lg-10">
+			  <select id="combo_distritos_2" class="form-control" disabled="true" name="distrito2" style="width:150px">
+				  <option>Seleccionar</option>
+			  </select>
+			  </div>
+			  </div>
 	                         
 				 <div class="form-group">
 				 <label for="referencia" class="col-lg-1 contro1-label">Referencia:</label> 

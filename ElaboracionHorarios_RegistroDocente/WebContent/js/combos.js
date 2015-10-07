@@ -1,40 +1,48 @@
 $( document ).ready(function() {
 	var global_coddpto="";
 	var optionVacio='<option value="0" selected="true" disabled="disabled">Seleccionar</option>';
+	var TotalGrupoCombos = $("select[id*='combo_']").length/3;
+
 	//cargar combo departamentos
-	var combo_departamento = $('#combo_departamento');
-	var combo_provincias = $('#combo_provincias');
-	var combo_distritos = $('#combo_distritos');
-	var request = $.ajax({
+		$.ajax({
 		  url: "ubigeo",
 		  method: "POST",
 		  data: { f : "listarDepartamentos" },
 		  dataType: "json",
 		  
+		}).done(function( departamentos ) {
+			
+			for(var i=1; i<=TotalGrupoCombos;i++){
+			
+			var combo_departamento = $('#combo_departamentos_'+i);
+				
+				$(departamentos).each(function(y, v){
+					if(y==0)
+					$('#combo_departamentos_'+i).append(optionVacio);
+					$('#combo_departamentos_'+i).append('<option value="' + v.coddpto + '">' + v.nombre + '</option>');
+	            })
+			}
+			
 		});
-		request.done(function( departamentos ) {
-			$(departamentos).each(function(i, v){ 
-				if(i==0)
-					combo_departamento.append(optionVacio);
-					combo_departamento.append('<option value="' + v.coddpto + '">' + v.nombre + '</option>');
-            })
-		});
+		
 	//cargar combo provincias
-	combo_departamento.on('change', function() {
+	$("select[id*='combo_departamento']").on('change', function() {
 	global_coddpto=this.value;
-	var request = $.ajax({
+	var grupo=this.id.slice(20);
+	var combo_provincias=$('#combo_provincias_'+grupo);
+	var combo_distritos=$('#combo_distritos_'+grupo);
+		$.ajax({
 				  url: "ubigeo",
 				  method: "POST",
 				  data: { f : "listarProvincias",
 					  coddpto:global_coddpto},
 				  dataType: "json",
 				  
-		});
-		request.done(function( provincias ) {
+		}).done(function( provincias ) {
 			combo_distritos.find('option').remove();
+			combo_distritos.prop('disabled', true);
 			combo_provincias.find('option').remove();;
 			combo_provincias.prop('disabled', false);
-			combo_distritos.prop('disabled', true);
 			$(provincias).each(function(i, v){ 
 				{
 					if(i==0){
@@ -46,9 +54,12 @@ $( document ).ready(function() {
 				});
 			});
 	});
-
-	combo_provincias.on('change', function() {
-	var request = $.ajax({
+// carga combo distritos
+	$("select[id*='combo_provincias']").on('change', function() {
+		var grupo=this.id.slice(17);
+		var combo_distritos=$('#combo_distritos_'+grupo);
+		console.log(grupo);
+		$.ajax({
 				  url: "ubigeo",
 				  method: "POST",
 				  data: { f : "listarDistritos",
@@ -56,8 +67,7 @@ $( document ).ready(function() {
 					  codprov:this.value},
 				  dataType: "json",
 				  
-		});
-		request.done(function( distritos ) {
+		}).done(function( distritos ) {
 			combo_distritos.prop('disabled', false);
 			combo_distritos.find('option').remove();
 			$(distritos).each(function(i, v){ 
@@ -67,8 +77,6 @@ $( document ).ready(function() {
 				});
 			});
 	});
+	
 });
 
-function cargarProvincias(){
-	
-}
