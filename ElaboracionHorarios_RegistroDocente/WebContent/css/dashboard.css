@@ -103,3 +103,30 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+.btn-addItem{
+	min-width: 35px;
+    float: right;
+    margin-left:5px;
+}
+
+@media (max-width: 768px) {
+  .col-xs-3 {
+	padding-left:0px;
+  }
+}
+
+@media (min-width: 769px) and (max-width:1518px){ 
+.col-xs-3 {
+    padding-left: 0px;
+  }
+}
+
+@media (min-width: 990px) and (max-width:1327px){ 
+.col-xs-9{
+	width:65%;
+    padding-left: 0px;
+}
+.col-xs-3 {
+	width:35%;
+  }
+}

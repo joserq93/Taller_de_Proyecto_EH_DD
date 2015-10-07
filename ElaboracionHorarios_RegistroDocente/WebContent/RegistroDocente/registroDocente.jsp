@@ -55,43 +55,46 @@
 			</div>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<form action="<%=getServletContext().getContextPath() %>/Guardar_Docente" method="post" class="form-horizontal" role="form">
+		<form action="<%=getServletContext().getContextPath() %>/Guardar_Docente" method="post" class="form-horizontal" role="form">
+		<div class="row">
+		
+		<div class="col-md-6">
 		<input type="hidden" name="f" value="GuardarDocente" /> 
 				
 				<fieldset>
-				<legend align= "left" style="width:400px">Datos Generales</legend>
+				<legend align="left">Datos Generales</legend>
 				<div class="form-group">
-				<label for="foto"  class="col-lg-1 control-label" >Url Foto: </label>
-				<div class="col-lg-10">
-				<input type="text" name="urlfoto" />
+				<label for="foto"  class="col-sm-3 control-label" >Url Foto: </label>
+				<div class="col-sm-9">
+				<input type="text" name="urlfoto" class="form-control input-sm"/>
 				</div>
 				</div>
 				
 				<div class="form-group">
-				<label for="Nombres" class="col-lg-1 control-label"  >Nombres: </label>
-				<div class="col-lg-10">
-				<input type="text" name="nombres" />
+				<label for="Nombres" class="col-sm-3 control-label"  >Nombres: </label>
+				<div class="col-sm-9">
+				<input type="text" name="nombres" class="form-control input-sm"/>
 				</div>
 				</div>
 				
 				<div class="form-group">
-				<label for="apellido_paterno" class="col-lg-1 control-label" >Apellido Paterno:</label>
-				<div class="col-lg-10">
-				 <input type="text" name="apellidopaterno" />
+				<label for="apellido_paterno" class="col-sm-3 control-label" >Apellido Paterno:</label>
+				<div class="col-sm-9">
+				 <input type="text" name="apellidopaterno" class="form-control input-sm"/>
 				 </div>
 				 </div>
 				 
 				 <div class="form-group">
-				<label for="apellido_materno" class="col-lg-1 control-label">Apellido Materno:</label>
-				<div class="col-lg-10">
-				 <input type="text" name="apellidomaterno" />
+				<label for="apellido_materno" class="col-sm-3 control-label">Apellido Materno:</label>
+				<div class="col-sm-9">
+				 <input type="text" name="apellidomaterno" class="form-control input-sm"/>
 				 </div>
 				 </div>
 				 
 				 <div class="form-group">
-				<label for="sexo" class="col-lg-1 control-label">Sexo:</label>
-				 <div class="col-lg-10">
-				 <select size="1" name="sexo" class="form-control" style="width:150px">
+				<label for="sexo" class="col-sm-3 control-label">Sexo:</label>
+				 <div class="col-sm-9">
+				 <select size="1" name="sexo" class="form-control input-sm">
 	                	<option value="M">Masculino</option>
 	                    <option value="F">Femenino</option>
 	                     </select>
@@ -99,9 +102,9 @@
 	             </div>
 	             
 	              <div class="form-group">
-	             <label for="estado_civil" class="col-lg-1 control-label">Estado Civil:</label>
-				 <div class="col-lg-10">
-				 <select size="1" name="estadocivil" class="form-control" style="width:150px">
+	             <label for="estado_civil" class="col-sm-3 control-label">Estado Civil:</label>
+				 <div class="col-sm-9">
+				 <select size="1" name="estadocivil" class="form-control input-sm">
 	                	<option value="S">Soltero</option>
 	                    <option value="C">Casado</option>
 	                    <option value="D">Divorciado</option>
@@ -110,9 +113,9 @@
 	             </div>
 	             
 				 <div class="form-group">
-				<label for="paisnacimiento" class="col-lg-1 control-label">Pais de Nacimiento:</label>
-				<div class="col-lg-10">
-				 <select size="1" name="pais" class="form-control" style="width:150px">
+				<label for="paisnacimiento" class="col-sm-3 control-label">Pais de Nacimiento:</label>
+				<div class="col-sm-9">
+				 <select size="1" name="pais" class="form-control input-sm">
 	                	<option value="1">Peru</option>
 	                    <option value="2">Chile</option>
 	                    <option value="3">Colombia</option>
@@ -123,37 +126,37 @@
 				</fieldset>
 				
 				<fieldset>
-				<legend align= "left" style="width:400px">Datos de Nacimiento</legend>
+				<legend align="left">Datos de Nacimiento</legend>
 				
 				<div class="form-group">
-				<label for="fechanacimiento" class="col-lg-1 contro1-label">Fecha de Nacimiento:</label> 
-				<div class="col-lg-10">
-				<input type="date" name="fechanacimiento">
+				<label for="fechanacimiento" class="col-sm-3 contro1-label">Fecha de Nacimiento:</label> 
+				<div class="col-sm-9">
+				<input type="date" name="fechanacimiento" class="form-control input-sm">
 				</div>
 				</div>
 				
 			  <div class="form-group">
-			  <label for="combo_departamentos_1" class="col-lg-1 contro1-label">Departamento:</label>
-			  <div class="col-lg-10">
-			  <select id="combo_departamentos_1" class="form-control" name="departamento1" style="width:150px">
+			  <label for="combo_departamentos_1" class="col-sm-3 contro1-label">Departamento:</label>
+			  <div class="col-sm-9">
+			  <select id="combo_departamentos_1" class="form-control input-sm" name="departamento1">
 				  <option>Seleccionar</option>
 			  </select>
 			  </div>
 			  </div>
 			  
 			  <div class="form-group">
-			  <label for="combo_provincias_1" class="col-lg-1 contro1-label">Provincia</label>
-			   <div class="col-lg-10">
-			  <select id="combo_provincias_1" class="form-control" disabled="true" name="provincia1" style="width:150px">
+			  <label for="combo_provincias_1" class="col-sm-3 contro1-label">Provincia</label>
+			   <div class="col-sm-9">
+			  <select id="combo_provincias_1" class="form-control input-sm" disabled="true" name="provincia1">
 				  <option>Seleccionar</option>
 			  </select>
 			  </div>
 			  </div>
 			  
 			  <div class="form-group">
-			  <label for="combo_distritos_1" class="col-lg-1 contro1-label">Distrito</label>
-			   <div class="col-lg-10">
-			  <select id="combo_distritos_1" class="form-control" disabled="true" name="distrito1" style="width:150px">
+			  <label for="combo_distritos_1" class="col-sm-3 contro1-label">Distrito</label>
+			   <div class="col-sm-9">
+			  <select id="combo_distritos_1" class="form-control input-sm" disabled="true" name="distrito1">
 				  <option>Seleccionar</option>
 			  </select>
 			  </div>
@@ -163,56 +166,64 @@
 			  
 			  
 			  <fieldset>
-			 <legend align= "left" style="width:400px">Direccion</legend>
+			 <legend align="left">Direccion</legend>
 				
 			 <div class="form-group">
-			  <label for="combo_departamentos_2" class="col-lg-1 contro1-label">Departamento:</label>
-			  <div class="col-lg-10">
-			  <select id="combo_departamentos_2" class="form-control" name="departamento2" style="width:150px">
+			  <label for="combo_departamentos_2" class="col-sm-3 contro1-label">Departamento:</label>
+			  <div class="col-sm-9">
+			  <select id="combo_departamentos_2" class="form-control input-sm" name="departamento2">
 				  <option>Seleccionar</option>
 			  </select>
 			  </div>
 			  </div>
 			  
 			  <div class="form-group">
-			  <label for="combo_provincias_2" class="col-lg-1 contro1-label">Provincia</label>
-			   <div class="col-lg-10">
-			  <select id="combo_provincias_2" class="form-control" disabled="true" name="provincia2" style="width:150px">
+			  <label for="combo_provincias_2" class="col-sm-3 contro1-label">Provincia</label>
+			   <div class="col-sm-9">
+			  <select id="combo_provincias_2" class="form-control input-sm" disabled="true" name="provincia2">
 				  <option>Seleccionar</option>
 			  </select>
 			  </div>
 			  </div>
 			  
 			  <div class="form-group">
-			  <label for="combo_distritos_2" class="col-lg-1 contro1-label">Distrito</label>
-			   <div class="col-lg-10">
-			  <select id="combo_distritos_2" class="form-control" disabled="true" name="distrito2" style="width:150px">
+			  <label for="combo_distritos_2" class="col-sm-3 contro1-label">Distrito</label>
+			   <div class="col-sm-9">
+			  <select id="combo_distritos_2" class="form-control input-sm" disabled="true" name="distrito2">
 				  <option>Seleccionar</option>
 			  </select>
 			  </div>
 			  </div>
 	                         
 				 <div class="form-group">
-				 <label for="referencia" class="col-lg-1 contro1-label">Referencia:</label> 
-				 <div class="col-lg-10">
-				 <input type="text" name="referencia" />
+				 <label for="referencia" class="col-sm-3 contro1-label">Referencia:</label> 
+				 <div class="col-sm-9">
+				 <input type="text" name="referencia" class="form-control input-sm"/>
 				 </div>
 				 </div>
 				 
 				</fieldset>
 				
 				<fieldset>
-				 		<legend align= "left" style="width:400px">Datos de Contacto</legend>
+				 		<legend align= "left">Datos de Contacto</legend>
 				 		
 			
 				<div class="form-group">
-				 <label for="telefono" class="col-lg-1 contro1-label">Telefono:</label>
-				  <div class="col-lg-10">
-				  <input type="text" name="telefono" /><input type="submit"value="+"><input type="submit"value="-">
+				 <label for="telefono" class="col-sm-3 contro1-label">Telefono:</label>
+				  <div class="col-sm-9">
+				  <div class="row">
+					  <div class="col-xs-9">
+						<input type="text" name="telefono" class="form-control input-sm"/>
+					  </div>
+					  <div class="col-xs-3">
+						<button type="button" class="btn btn-success btn-addItem">-</button>
+						<button type="button" class="btn btn-success btn-addItem">+</button>
+					  </div>
+				  </div>
 				</div>
 				</div>
 								
-				<table class="table table-hover" style="width:100px">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>Telefono</th>
@@ -227,13 +238,21 @@
 				</table>
 				
 				<div class="form-group">
-				 <label for="email" class="col-lg-1 contro1-label">Email:</label>
-				 <div class="col-lg-10">
-				 <input type="text" name="email" /><input type="submit"value="+"><input type="submit"value="-">
+				 <label for="email" class="col-sm-3 contro1-label">Email:</label>
+				 <div class="col-sm-9">
+				 <div class="row">
+					  <div class="col-xs-9">
+					  <input type="text" name="email" class="form-control input-sm"/>
+					  </div>
+					  <div class="col-xs-3">
+						<button type="button" class="btn btn-success btn-addItem">-</button>
+						<button type="button" class="btn btn-success btn-addItem">+</button>
+					  </div>
+				  </div>
 				</div>
 				</div>
 				
-				<table class="table table-hover" style="width:200px">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>Email</th>
@@ -250,9 +269,9 @@
 			
 				
 				<div class="form-group">
-				 <label for="email" class="col-lg-1 contro1-label">Tipo Doc.:</label> 
-				<div class="col-lg-10">
-				 <select size="1" name="tipodoc" class="form-control" style="width:150px">
+				 <label for="email" class="col-sm-3 contro1-label">Tipo Doc.:</label> 
+				<div class="col-sm-9">
+				 <select size="1" name="tipodoc" class="form-control input-sm">
 	                	<option value="DNI">DNI</option>
 	                    <option value="Licencia de Conducir">Licencia de Conducir</option>
 	                           </select>
@@ -260,13 +279,21 @@
 	                    </div>
 	             
 	              <div class="form-group">
-				 <label for="email" class="col-lg-1 contro1-label">Numero:</label>
-				 <div class="col-lg-10">
-				 <input type="text" name="numero" /><input type="submit"value="+"><input type="submit"value="-">
+				 <label for="email" class="col-sm-3 contro1-label">Numero:</label>
+				 <div class="col-sm-9">
+				 <div class="row">
+					  <div class="col-xs-9">
+					  <input type="text" name="numero" class="form-control input-sm"/>
+					  </div>
+					  <div class="col-xs-3">
+						<button type="button" class="btn btn-success btn-addItem">-</button>
+						<button type="button" class="btn btn-success btn-addItem">+</button>
+					  </div>
+				  </div>
 				</div>
 				</div>
 				
-				<table class="table table-hover" style="width:300px">
+				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>Tipo Documento</th>
@@ -284,16 +311,22 @@
 				</table>
 				 
 				 </fieldset>
-				 
+		</div>
+		<div class="col-md-6">
 				 		
 				 		<fieldset>
-				 		<legend align= "left" style="width:400px">Datos Academicos</legend>
+				 		<legend align= "left">
+					 		<p>Datos Academicos
+							 		<button type="button" class="btn btn-success btn-addItem-derecha">-</button>
+							 		<button type="button" class="btn btn-success btn-addItem-derecha">+</button>
+					 		</p>
+				 		</legend>
 				 		
 				 		
 				 <div class="form-group">
-				 <label for="email" class="col-lg-1 contro1-label">Grado Academico:</label>
-				 <div class="col-lg-10">
-				 <select size="1" name="gradoacademico" class="form-control" style="width:150px">
+				 <label for="email" class="col-sm-3 contro1-label">Grado Academico:</label>
+				 <div class="col-sm-9">
+				 <select size="1" name="gradoacademico" class="form-control input-sm">
 	                	<option value="Master">Master</option>
 	                    <option value="Doctor">Doctor</option>
 	                    </select>
@@ -301,39 +334,39 @@
 	                    </div>
 	                                 
 	                 <div class="form-group">
-				 <label for="email" class="col-lg-1 contro1-label">Profecion:</label>
-				 <div class="col-lg-10">
-				 <select size="1" name="profecion" class="form-control" style="width:150px">
+				 <label for="email" class="col-sm-3 contro1-label">Profecion:</label>
+				 <div class="col-sm-9">
+				 <select size="1" name="profecion" class="form-control input-sm">
 	                	<option value="Ing.Sistemas">Ing.Sistemas</option>
 	                    <option value="Ing.Industrial">Ing.Industrial</option>
 	                    </select>
 	                    </div>
 	                    </div>   
 	                             
-	              <div class="form-group">
-				 <label for="email" class="col-lg-1 contro1-label">Especialidad:</label>
-				 <div class="col-lg-10">
-				 <select size="1" name="especialidad" class="form-control" style="width:150px">
-	                	<option value="S.I">S.I</option>
-	                    <option value="T.I">T.I</option>
-	                    </select>
-	                    </div>
-	                    </div>
+	             <div class="form-group">
+				 <label for="email" class="col-sm-3 contro1-label">Especialidad:</label>
+					 <div class="col-sm-9">
+						 <select size="1" name="especialidad" class="form-control input-sm">
+			                	<option value="S.I">S.I</option>
+			                    <option value="T.I">T.I</option>
+			             </select>
+		             </div>
+	             </div>
 	                    
 	               <div class="form-group">
-				 <label for="email" class="col-lg-1 contro1-label">Institucion:</label>
-				 <div class="col-lg-10">
-				 <input type="text" name="institucion" />  
+				 <label for="email" class="col-sm-3 contro1-label">Institucion:</label>
+				 <div class="col-sm-9">
+				 <input type="text" name="institucion" class="form-control input-sm"/>  
 	              </div>
 	              </div>
 	              
-	               <div class="form-group">
-				 <label for="email" class="col-lg-1 contro1-label">Fecha de Ingreso:</label>
-				 <div class="col-lg-10">
-				 <input type="date" name="fechaingreso" /><input type="submit"value="+"><input type="submit"value="-"></p>
+	             <div class="form-group">
+				 <label for="email" class="col-sm-3 contro1-label">Fecha de Ingreso:</label>
+				 <div class="col-sm-9">
+				 <input type="date" name="fechaingreso" class="form-control input-sm"/>
 				 </div>
 				 </div>
-				 <table class="table table-hover" style="width:500px">
+				 <table class="table table-hover">
 					<thead>
 						<tr>
 							<th>Grado Academico</th>
@@ -361,8 +394,11 @@
 				 
 				 
 				<p><input type="submit"value="Agregar" class="btn btn-primary"></p>
-				</form>
+		
 			</div>
+		</div>
+		</form>
+		</div>
 	</div>
 				<!-- Inicio Modal importar excel jose-->
 		<div id="RegistrarDocenteModal" class="modal fade" role="dialog">
