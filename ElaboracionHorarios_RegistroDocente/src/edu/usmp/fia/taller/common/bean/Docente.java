@@ -23,14 +23,14 @@ public class Docente {
 	private char estado;
 	private char estado_civil;
 	private char sexo;
-	private Date fecha_nacimiento;
+	private String fecha_nacimiento;
 	private String referencia_direccion;
 	private String tipo_documento;
 	private String grado_academico;
 	private String profecion;
 	private String especialidad;
 	private String institucion;
-	private Date fecha_ingreso;
+	private String fecha_ingreso;
 	
 	
 	
@@ -64,10 +64,10 @@ public class Docente {
 	public void setInstitucion(String institucion) {
 		this.institucion = institucion;
 	}
-	public Date getFecha_ingreso() {
+	public String getFecha_ingreso() {
 		return fecha_ingreso;
 	}
-	public void setFecha_ingreso(Date fecha_ingreso) {
+	public void setFecha_ingreso(String fecha_ingreso) {
 		this.fecha_ingreso = fecha_ingreso;
 	}
 	public int getId_docente() {
@@ -172,10 +172,10 @@ public class Docente {
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
-	public Date getFecha_nacimiento() {
+	public String getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
+	public void setFecha_nacimiento(String fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
 	public String getReferencia_direccion() {
