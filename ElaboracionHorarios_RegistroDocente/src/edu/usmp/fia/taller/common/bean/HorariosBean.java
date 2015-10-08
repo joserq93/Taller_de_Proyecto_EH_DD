@@ -2,150 +2,147 @@ package edu.usmp.fia.taller.common.bean;
 
 public class HorariosBean {
 	
-	private String CODFAC;
-	private String	C01;
-	private String CICEST;
-	private String TUR;
-	private String CODCUR;
-	private String CODCURTEO;
-	private String PROFESOR;
-	private String CURSO;
-	private String DESRES;
-	private String CODSEC;
-	private String AULA;
-	private String ESCUELA;
-	private String NUMCRE;
-	private String LUNES;
-	private String MARTES;
-	private String MIERCOLES;
-	private String JUEVES;
-	private String VIERNES;
-	private String SABADO;
-	private String DOMINGO;
-	
-	
-	
-	
-	public String getESCUELA() {
-		return ESCUELA;
+	private String codFac;
+	private String	c01;
+	private String cicest;
+	private String tur;
+	private String codCur;
+	private String codCurteo;
+	private String profesor;
+	private String curso;
+	private String desRes;
+	private String codSec;
+	private String aula;
+	private String escual;
+	private String numCre;
+	private String lunes;
+	private String martes;
+	private String miercoles;
+	private String jueves;
+	private String viernes;
+	private String sabado;
+	private String domingo;
+	public String getCodFac() {
+		return codFac;
 	}
-	public void setESCUELA(String eSCUELA) {
-		ESCUELA = eSCUELA;
-	}
-	public String getCODCUR() {
-		return CODCUR;
-	}
-	public void setCODCUR(String cODCUR) {
-		CODCUR = cODCUR;
-	}
-	public String getCODFAC() {
-		return CODFAC;
-	}
-	public void setCODFAC(String cODFAC) {
-		CODFAC = cODFAC;
+	public void setCodFac(String codFac) {
+		this.codFac = codFac;
 	}
 	public String getC01() {
-		return C01;
+		return c01;
 	}
 	public void setC01(String c01) {
-		C01 = c01;
+		this.c01 = c01;
 	}
-	public String getCICEST() {
-		return CICEST;
+	public String getCicest() {
+		return cicest;
 	}
-	public void setCICEST(String cICEST) {
-		CICEST = cICEST;
+	public void setCicest(String cicest) {
+		this.cicest = cicest;
 	}
-	public String getTUR() {
-		return TUR;
+	public String getTur() {
+		return tur;
 	}
-	public void setTUR(String tUR) {
-		TUR = tUR;
+	public void setTur(String tur) {
+		this.tur = tur;
 	}
-	public String getCODCURTEO() {
-		return CODCURTEO;
+	public String getCodCur() {
+		return codCur;
 	}
-	public void setCODCURTEO(String cODCURTEO) {
-		CODCURTEO = cODCURTEO;
+	public void setCodCur(String codCur) {
+		this.codCur = codCur;
 	}
-	public String getPROFESOR() {
-		return PROFESOR;
+	public String getCodCurteo() {
+		return codCurteo;
 	}
-	public void setPROFESOR(String pROFESOR) {
-		PROFESOR = pROFESOR;
+	public void setCodCurteo(String codCurteo) {
+		this.codCurteo = codCurteo;
 	}
-	public String getCURSO() {
-		return CURSO;
+	public String getProfesor() {
+		return profesor;
 	}
-	public void setCURSO(String cURSO) {
-		CURSO = cURSO;
+	public void setProfesor(String profesor) {
+		this.profesor = profesor;
 	}
-	public String getDESRES() {
-		return DESRES;
+	public String getCurso() {
+		return curso;
 	}
-	public void setDESRES(String dESRES) {
-		DESRES = dESRES;
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
-	public String getCODSEC() {
-		return CODSEC;
+	public String getDesRes() {
+		return desRes;
 	}
-	public void setCODSEC(String cODSEC) {
-		CODSEC = cODSEC;
+	public void setDesRes(String desRes) {
+		this.desRes = desRes;
 	}
-	public String getAULA() {
-		return AULA;
+	public String getCodSec() {
+		return codSec;
 	}
-	public void setAULA(String aULA) {
-		AULA = aULA;
+	public void setCodSec(String codSec) {
+		this.codSec = codSec;
 	}
-	public String getNUMCRE() {
-		return NUMCRE;
+	public String getAula() {
+		return aula;
 	}
-	public void setNUMCRE(String nUMCRE) {
-		NUMCRE = nUMCRE;
+	public void setAula(String aula) {
+		this.aula = aula;
 	}
-	public String getLUNES() {
-		return LUNES;
+	public String getEscual() {
+		return escual;
 	}
-	public void setLUNES(String lUNES) {
-		LUNES = lUNES;
+	public void setEscual(String escual) {
+		this.escual = escual;
 	}
-	public String getMARTES() {
-		return MARTES;
+	public String getNumCre() {
+		return numCre;
 	}
-	public void setMARTES(String mARTES) {
-		MARTES = mARTES;
+	public void setNumCre(String numCre) {
+		this.numCre = numCre;
 	}
-	public String getMIERCOLES() {
-		return MIERCOLES;
+	public String getLunes() {
+		return lunes;
 	}
-	public void setMIERCOLES(String mIERCOLES) {
-		MIERCOLES = mIERCOLES;
+	public void setLunes(String lunes) {
+		this.lunes = lunes;
 	}
-	public String getJUEVES() {
-		return JUEVES;
+	public String getMartes() {
+		return martes;
 	}
-	public void setJUEVES(String jUEVES) {
-		JUEVES = jUEVES;
+	public void setMartes(String martes) {
+		this.martes = martes;
 	}
-	public String getVIERNES() {
-		return VIERNES;
+	public String getMiercoles() {
+		return miercoles;
 	}
-	public void setVIERNES(String vIERNES) {
-		VIERNES = vIERNES;
+	public void setMiercoles(String miercoles) {
+		this.miercoles = miercoles;
 	}
-	public String getSABADO() {
-		return SABADO;
+	public String getJueves() {
+		return jueves;
 	}
-	public void setSABADO(String sABADO) {
-		SABADO = sABADO;
+	public void setJueves(String jueves) {
+		this.jueves = jueves;
 	}
-	public String getDOMINGO() {
-		return DOMINGO;
+	public String getViernes() {
+		return viernes;
 	}
-	public void setDOMINGO(String dOMINGO) {
-		DOMINGO = dOMINGO;
+	public void setViernes(String viernes) {
+		this.viernes = viernes;
 	}
+	public String getSabado() {
+		return sabado;
+	}
+	public void setSabado(String sabado) {
+		this.sabado = sabado;
+	}
+	public String getDomingo() {
+		return domingo;
+	}
+	public void setDomingo(String domingo) {
+		this.domingo = domingo;
+	}
+	
 	
 	
 }

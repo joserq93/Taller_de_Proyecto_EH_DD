@@ -52,11 +52,6 @@ public class CargarExcel extends ActionServlet  {
 	@RequireLogin(true)
 	public void cargarExcel() throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("ENTRE AL POST");
-		System.out.println("blabla: "+request.getContentType());
-		System.out.println("blbla2: "+request.getParameter("filetoupload"));
-		System.out.println("blablb3: "+request.getInputStream());
-		System.out.println("blablb4: "+request.getContentLength());
 				response.setContentType("text/html");
 				   PrintWriter out = response.getWriter();
 				String saveFile="";
@@ -133,35 +128,37 @@ public class CargarExcel extends ActionServlet  {
             	horarios= new HorariosBean();
                 row = hssfSheet.getRow(i);        
                 if(!row.getCell(0).getStringCellValue().equals("")){
-	            	horarios.setCODFAC(row.getCell(0).getStringCellValue());
+	            	horarios.setCodFac(row.getCell(0).getStringCellValue());
 	            	horarios.setC01(row.getCell(1).getStringCellValue());
-	            	horarios.setCICEST(row.getCell(2).getStringCellValue());
-	            	horarios.setTUR(row.getCell(3).getStringCellValue());
-	            	horarios.setCODCUR(row.getCell(4).getStringCellValue());
-	            	horarios.setCODCURTEO(row.getCell(5).getStringCellValue());
-	            	horarios.setPROFESOR(row.getCell(6).getStringCellValue());
-	            	horarios.setCURSO(row.getCell(7).getStringCellValue());
-	            	horarios.setDESRES(row.getCell(8).getStringCellValue());
-	            	horarios.setCODSEC(row.getCell(9).getStringCellValue());
-	            	horarios.setAULA(row.getCell(10).getStringCellValue());
-	            	horarios.setESCUELA(row.getCell(11).getStringCellValue());
-	            	horarios.setNUMCRE(row.getCell(12).getStringCellValue());
-	            	horarios.setLUNES(row.getCell(13).getStringCellValue());
-	            	horarios.setMARTES(row.getCell(14).getStringCellValue());
-	            	horarios.setMIERCOLES(row.getCell(15).getStringCellValue());
-	            	horarios.setJUEVES(row.getCell(16).getStringCellValue());
-	            	horarios.setVIERNES(row.getCell(17).getStringCellValue());
-	            	horarios.setSABADO(row.getCell(18).getStringCellValue());
-	            	horarios.setDOMINGO(row.getCell(19).getStringCellValue());
-	            	
+	            	horarios.setCicest(row.getCell(2).getStringCellValue());
+	            	horarios.setTur(row.getCell(3).getStringCellValue());
+	            	horarios.setCodCur(row.getCell(4).getStringCellValue());
+	            	horarios.setCodCurteo(row.getCell(5).getStringCellValue());
+	            	horarios.setProfesor(row.getCell(6).getStringCellValue());
+	            	horarios.setCurso(row.getCell(7).getStringCellValue());
+	            	horarios.setDesRes(row.getCell(8).getStringCellValue());
+	            	horarios.setCodSec(row.getCell(9).getStringCellValue());
+	            	horarios.setAula(row.getCell(10).getStringCellValue());
+	            	horarios.setEscual(row.getCell(11).getStringCellValue());
+	            	horarios.setNumCre(row.getCell(12).getStringCellValue());
+	            	horarios.setLunes(row.getCell(13).getStringCellValue());
+	            	horarios.setMartes(row.getCell(14).getStringCellValue());
+	            	horarios.setMiercoles(row.getCell(15).getStringCellValue());
+	            	horarios.setJueves(row.getCell(16).getStringCellValue());
+	            	horarios.setViernes(row.getCell(17).getStringCellValue());
+	            	horarios.setSabado(row.getCell(18).getStringCellValue());
+	            	horarios.setDomingo(row.getCell(19).getStringCellValue());
+        			int ilistaCurso= oDAOFactory.getElaboracionHorario().elabHorarios().insertHorarios(horarios);
 	            	// inicio validar si los cursos estan como esta en el excel
 	            	for(int z=0;z<listaCurso.size();z++){
 	            		
-	            		if(horarios.getCURSO().equalsIgnoreCase(listaCurso.get(z).getNombreCurso())){
-	            			System.out.println("CURSOS IGUAL: "+horarios.getCURSO()+"=="+listaCurso.get(z).getNombreCurso());
+	            		if(horarios.getCurso().equalsIgnoreCase(listaCurso.get(z).getNombreCurso())){
+	            			System.out.println("CURSOS IGUAL: "+horarios.getCurso()+"=="+listaCurso.get(z).getNombreCurso());
+
+	            			
 	            		}
 	            	}
-	            	
+	            	System.out.println("registro:"+ilistaCurso);
 	                listaHorario.add(horarios);    
 	                
                 }else{
