@@ -9,8 +9,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <link href="css/boostrap/bootstrap.min.css" rel="stylesheet" />
+<link href="css/boostrap/bootstrap-table.min.css" rel="stylesheet" />
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ <script src="js/bootstrap-table.min.js"></script>
 <link href="css/dashboard.css" rel="stylesheet" />
  <script src="js/combos.js"></script>
 <title>Insert title here</title>
@@ -216,13 +218,20 @@
 						<input type="text" name="telefono" class="form-control input-sm"/>
 					  </div>
 					  <div class="col-xs-3">
-						<button type="button" class="btn btn-success btn-addItem">-</button>
-						<button type="button" class="btn btn-success btn-addItem">+</button>
+						<button type="button" class="btn btn-success btn-addItem" >-</button>
+						<button type="button" class="btn btn-success btn-addItem" id="agregar-telefono" data-method="append">+</button>
 					  </div>
 				  </div>
 				</div>
 				</div>
-								
+				<table id="table-methods" data-height="150" data-click-to-select="true" data-select-item-name="radioName">
+				    <thead>
+				        <tr>
+				            <th data-field="estado" data-radio="true"></th>
+				            <th data-field="telefono" data-halign="center">Telefono</th>
+				        </tr>
+				    </thead>
+				</table>		
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -457,11 +466,39 @@
 		  </div>
 		</div>
 		<!-- Fin Modal -->
-	
+		<script>
+    $(function () {
+        $('#table-methods').next().click(function () {
+            $(this).hide();
 
+            var id = 0,
+                getRows = function () {
+                    var rows = [];
 
+                    for (var i = 0; i < 10; i++) {
+                        rows.push({
+                            telefono: '87878787'
+                        });
+                    }
+                    return rows;
+                },
+                // init table use data
+                $table = $('#table-methods').bootstrapTable({
+                    data: getRows()
+                });
 
-	<script src="../Scripts/jquery-1.9.1.js"></script>
-	<script src="../Scripts/bootstrap.min.js"></script>
+            
+            // This demonstrates utilizing the data-method attribute to use one 
+            //     jQuery handler to execute multiple methods. 
+            // ($this).data('method') retrieves the value of the data-method 
+            //     attribute of the object that was clicked which is then passed to 
+            //     the bootstrapTable function. 
+            // Only the load and append methods require a parameter                                 
+            $('#agregar-telefono').click(function () {
+                $table.bootstrapTable($(this).data('method'), getRows());
+            });
+        });
+    });
+</script>
 </body>
 </html>
