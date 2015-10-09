@@ -15,6 +15,7 @@
  <script src="js/bootstrap-table.min.js"></script>
 <link href="css/dashboard.css" rel="stylesheet" />
  <script src="js/combos.js"></script>
+ <script src="js/accionesRegistroDocentes.js"></script>
 <title>Insert title here</title>
 </head>
 <%
@@ -215,72 +216,58 @@
 				  <div class="col-sm-9">
 				  <div class="row">
 					  <div class="col-xs-9">
-						<input type="text" name="telefono" class="form-control input-sm"/>
+						<input type="text" name="telefono" id="telefono" class="form-control input-sm"/>
 					  </div>
 					  <div class="col-xs-3">
-						<button type="button" class="btn btn-success btn-addItem" >-</button>
-						<button type="button" class="btn btn-success btn-addItem" id="agregar-telefono" data-method="append">+</button>
+						<button type="button" class="btn btn-success btn-addItem" data-method="remove" data-table="telefono">-</button>
+						<button type="button" class="btn btn-success btn-addItem" data-method="append" data-table="telefono">+</button>
 					  </div>
 				  </div>
 				</div>
 				</div>
-				<table id="table-methods" data-height="150" data-click-to-select="true" data-select-item-name="radioName">
+				<table id="table_telefono" data-height="154" data-click-to-select="true">
 				    <thead>
-				        <tr>
-				            <th data-field="estado" data-radio="true"></th>
-				            <th data-field="telefono" data-halign="center">Telefono</th>
-				        </tr>
+				    <tr>
+				        <th data-field="state" data-checkbox="true"></th>
+				        <th data-field="id_telefono" data-visible="false">Id</th>
+				        <th data-field="id_local" data-visible="false">Id_local</th>
+				        <th data-field="telefono">Telefono</th>
+				    </tr>
 				    </thead>
-				</table>		
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Telefono</th>
-						</tr>
-					</thead>
-						<tr>
-							<td>966251235</td>
-						</tr>
-						<tr>
-							<td>966251235</td>
-						</tr>
 				</table>
+				</br>	
 				
 				<div class="form-group">
 				 <label for="email" class="col-sm-3 contro1-label">Email:</label>
 				 <div class="col-sm-9">
 				 <div class="row">
 					  <div class="col-xs-9">
-					  <input type="text" name="email" class="form-control input-sm"/>
+					  <input type="text" name="email" class="form-control input-sm" id="email" />
 					  </div>
 					  <div class="col-xs-3">
-						<button type="button" class="btn btn-success btn-addItem">-</button>
-						<button type="button" class="btn btn-success btn-addItem">+</button>
+						<button type="button" class="btn btn-success btn-addItem" data-method="remove" data-table="email">-</button>
+						<button type="button" class="btn btn-success btn-addItem" data-method="append" data-table="email">+</button>
 					  </div>
 				  </div>
 				</div>
 				</div>
-				
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Email</th>
-						</tr>
-					</thead>
-						<tr>
-							<td>vasronald_200@hotmail.com</td>
-						</tr>
-						<tr>
-							<td>jose_r@gmail.com</td>
-						</tr>
+
+				<table id="table_email" data-height="154" data-click-to-select="true">
+				    <thead>
+				    <tr>
+				        <th data-field="state" data-checkbox="true"></th>
+				        <th data-field="id_email" data-visible="false">Id</th>
+				        <th data-field="id_local" data-visible="false">Id_local</th>
+				        <th data-field="email">E-mail</th>
+				    </tr>
+				    </thead>
 				</table>
-				
-			
+				</br>	
 				
 				<div class="form-group">
 				 <label for="email" class="col-sm-3 contro1-label">Tipo Doc.:</label> 
 				<div class="col-sm-9">
-				 <select size="1" name="tipodoc" class="form-control input-sm">
+				 <select size="1" name="tipodoc" id="tipodoc" class="form-control input-sm">
 	                	<option value="DNI">DNI</option>
 	                    <option value="Licencia de Conducir">Licencia de Conducir</option>
 	                           </select>
@@ -292,31 +279,26 @@
 				 <div class="col-sm-9">
 				 <div class="row">
 					  <div class="col-xs-9">
-					  <input type="text" name="numero" class="form-control input-sm"/>
+					  <input type="text" name="numero" id="numero"class="form-control input-sm"/>
 					  </div>
 					  <div class="col-xs-3">
-						<button type="button" class="btn btn-success btn-addItem">-</button>
-						<button type="button" class="btn btn-success btn-addItem">+</button>
+						<button type="button" class="btn btn-success btn-addItem" data-method="remove" data-table="documento">-</button>
+						<button type="button" class="btn btn-success btn-addItem" data-method="append" data-table="documento">+</button>
 					  </div>
 				  </div>
 				</div>
 				</div>
 				
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Tipo Documento</th>
-							<th>Nro de Documento</th>
-						</tr>
-					</thead>
-						<tr>
-							<td>DNI</td>
-							<td>70312419</td>
-						</tr>
-						<tr>
-							<td>Licencia de Conducir</td>
-							<td>56213597</td>
-						</tr>
+				<table id="table_documento" data-height="154" data-click-to-select="true">
+				    <thead>
+				    <tr>
+				        <th data-field="state" data-checkbox="true"></th>
+				        <th data-field="id_numero" data-visible="false">Id</th>
+				        <th data-field="id_local" data-visible="false">Id_local</th>
+				        <th data-field="tipodoc"># Tipo</th>
+				        <th data-field="numero"># Documento</th>
+				    </tr>
+				    </thead>
 				</table>
 				 
 				 </fieldset>
@@ -466,39 +448,5 @@
 		  </div>
 		</div>
 		<!-- Fin Modal -->
-		<script>
-    $(function () {
-        $('#table-methods').next().click(function () {
-            $(this).hide();
-
-            var id = 0,
-                getRows = function () {
-                    var rows = [];
-
-                    for (var i = 0; i < 10; i++) {
-                        rows.push({
-                            telefono: '87878787'
-                        });
-                    }
-                    return rows;
-                },
-                // init table use data
-                $table = $('#table-methods').bootstrapTable({
-                    data: getRows()
-                });
-
-            
-            // This demonstrates utilizing the data-method attribute to use one 
-            //     jQuery handler to execute multiple methods. 
-            // ($this).data('method') retrieves the value of the data-method 
-            //     attribute of the object that was clicked which is then passed to 
-            //     the bootstrapTable function. 
-            // Only the load and append methods require a parameter                                 
-            $('#agregar-telefono').click(function () {
-                $table.bootstrapTable($(this).data('method'), getRows());
-            });
-        });
-    });
-</script>
 </body>
 </html>
