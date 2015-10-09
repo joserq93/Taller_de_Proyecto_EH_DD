@@ -172,7 +172,7 @@
                   <th width="100px">Domingo</th>
               </tr>
               <tr>
-                  <td>8:00</td>
+                  <td>8:00 - 8:45</td>
                   <td class="hora" hora-data="1-1"></td>
                   <td class="hora" hora-data="2-1"></td>
                   <td class="hora" hora-data="3-1"></td>
@@ -182,7 +182,7 @@
                   <td class="hora" hora-data="7-1"></td>
               </tr>
               <tr>
-                  <td>8:45</td>
+                  <td>8:45 - 9:30</td>
                   <td class="hora" hora-data="1-2"></td>
                   <td class="hora" hora-data="2-2"></td>
                   <td class="hora" hora-data="3-2"></td>
@@ -192,7 +192,7 @@
                   <td class="hora" hora-data="7-2"></td>
               </tr>
               <tr>
-                  <td>9:30</td>
+                  <td>9:30 - 10:15</td>
                   <td class="hora" hora-data="1-3"></td>
                   <td class="hora" hora-data="2-3"></td>
                   <td class="hora" hora-data="3-3"></td>
@@ -202,7 +202,7 @@
                   <td class="hora" hora-data="7-3"></td>
               </tr>
               <tr>
-                  <td>10:15</td>
+                  <td>10:15 - 11:00</td>
                   <td class="hora" hora-data="1-4"></td>
                   <td class="hora" hora-data="2-4"></td>
                   <td class="hora" hora-data="3-4"></td>
@@ -212,7 +212,7 @@
                   <td class="hora" hora-data="7-4"></td>
               </tr>
               <tr>
-                  <td>11:00</td>
+                  <td>11:00 - 11:45</td>
                   <td class="hora" hora-data="1-5"></td>
                   <td class="hora" hora-data="2-5"></td>
                   <td class="hora" hora-data="3-5"></td>
@@ -222,7 +222,7 @@
                   <td class="hora" hora-data="7-5"></td>
               </tr>
               <tr>
-                  <td>11:45</td>
+                  <td>11:45 - 12:30</td>
                   <td class="hora" hora-data="1-19"></td>
                   <td class="hora" hora-data="2-19"></td>
                   <td class="hora" hora-data="3-19"></td>
@@ -232,7 +232,7 @@
                   <td class="hora" hora-data="7-19"></td>
               </tr>
               <tr>
-                  <td>12:30</td>
+                  <td>12:30 - 1:15</td>
                   <td class="hora" hora-data="1-6"></td>
                   <td class="hora" hora-data="2-6"></td>
                   <td class="hora" hora-data="3-6"></td>
@@ -242,7 +242,7 @@
                   <td class="hora" hora-data="7-6"></td>
               </tr>
               <tr>
-                  <td>1:15</td>
+                  <td>13:15 - 14:00</td>
                   <td class="hora" hora-data="1-7"></td>
                   <td class="hora" hora-data="2-7"></td>
                   <td class="hora" hora-data="3-7"></td>
@@ -252,7 +252,7 @@
                   <td class="hora" hora-data="7-7"></td>
               </tr>
               <tr>
-                  <td>2:00</td>
+                  <td>14:00 - 14:45</td>
                   <td class="hora" hora-data="1-8"></td>
                   <td class="hora" hora-data="2-8"></td>
                   <td class="hora" hora-data="3-8"></td>
@@ -262,7 +262,7 @@
                   <td class="hora" hora-data="7-8"></td>
               </tr>
               <tr>
-                  <td>2:45</td>
+                  <td>14:45 - 15:30</td>
                   <td class="hora" hora-data="1-9"></td>
                   <td class="hora" hora-data="2-9"></td>
                   <td class="hora" hora-data="3-9"></td>
@@ -272,7 +272,7 @@
                   <td class="hora" hora-data="7-9"></td>
               </tr>
               <tr>
-                  <td>3:30</td>
+                  <td>15:30 - 16:15</td>
                   <td class="hora" hora-data="1-10"></td>
                   <td class="hora" hora-data="2-10"></td>
                   <td class="hora" hora-data="3-10"></td>
@@ -282,7 +282,7 @@
                   <td class="hora" hora-data="7-10"></td>
               </tr>
               <tr>
-                  <td>4:15</td>
+                  <td>16:15 - 17:00</td>
                   <td class="hora" hora-data="1-11"></td>
                   <td class="hora" hora-data="2-11"></td>
                   <td class="hora" hora-data="3-11"></td>
@@ -292,7 +292,7 @@
                   <td class="hora" hora-data="7-11"></td>
               </tr>	
               <tr>
-                  <td>5:00</td>
+                  <td>17:00 - 17:45</td>
                   <td class="hora" hora-data="1-12"></td>
                   <td class="hora" hora-data="2-12"></td>
                   <td class="hora" hora-data="3-12"></td>
@@ -302,7 +302,7 @@
                   <td class="hora" hora-data="7-12"></td>
               </tr>
               <tr>
-                  <td>5:45</td>
+                  <td>17:45 - 18:30</td>
                   <td class="hora" hora-data="1-13"></td>
                   <td class="hora" hora-data="2-13"></td>
                   <td class="hora" hora-data="3-13"></td>
@@ -312,7 +312,7 @@
                   <td class="hora" hora-data="7-13"></td>
               </tr>
               <tr>
-                  <td>6:30</td>
+                  <td>18:30 - 19:15</td>
                   <td class="hora" hora-data="1-14"></td>
                   <td class="hora" hora-data="2-14"></td>
                   <td class="hora" hora-data="3-14"></td>
@@ -322,7 +322,7 @@
                   <td class="hora" hora-data="7-14"></td>
               </tr>
               <tr>
-                  <td>7:15</td>
+                  <td>19:15 - 20:00</td>
                   <td class="hora" hora-data="1-15"></td>
                   <td class="hora" hora-data="2-15"></td>
                   <td class="hora" hora-data="3-15"></td>
@@ -332,7 +332,7 @@
                   <td class="hora" hora-data="7-15"></td>
               </tr>
               <tr>
-                  <td>8:00</td>
+                  <td>20:00 - 20:45</td>
                   <td class="hora" hora-data="1-16"></td>
                   <td class="hora" hora-data="2-16"></td>
                   <td class="hora" hora-data="3-16"></td>
@@ -342,7 +342,7 @@
                   <td class="hora" hora-data="7-16"></td>
               </tr>
               <tr>
-                  <td>8:45</td>
+                  <td>20:45 - 21:30</td>
                   <td class="hora" hora-data="1-17"></td>
                   <td class="hora" hora-data="2-17"></td>
                   <td class="hora" hora-data="3-17"></td>
@@ -352,7 +352,7 @@
                   <td class="hora" hora-data="7-17"></td>
               </tr>
               <tr>
-                  <td>9:30</td>
+                  <td>21:30 - 22:15</td>
                   <td class="hora" hora-data="1-18"></td>
                   <td class="hora" hora-data="2-18"></td>
                   <td class="hora" hora-data="3-18"></td>
@@ -361,6 +361,7 @@
                   <td class="hora" hora-data="6-18"></td>
                   <td class="hora" hora-data="7-18"></td>
               </tr>
+              
            </table>
         </div>
         <div class="col-md-10 pull-right">
