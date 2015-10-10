@@ -31,7 +31,6 @@ import edu.usmp.fia.taller.common.action.HttpMethod;
 import edu.usmp.fia.taller.common.action.HttpMethodType;
 import edu.usmp.fia.taller.common.action.RequireLogin;
 import edu.usmp.fia.taller.common.bean.Curso;
-import edu.usmp.fia.taller.common.bean.CursoBean;
 import edu.usmp.fia.taller.common.bean.HorariosBean;
 import edu.usmp.fia.taller.common.dao.DAOFactory;
 import edu.usmp.fia.taller.common.dao.MySqlDAOFactory;
@@ -43,7 +42,6 @@ public class CargarExcel extends ActionServlet  {
 	@HttpMethod(HttpMethodType.GET)
 	@RequireLogin(true)
 	public void leerExcel() throws Exception {
-		System.out.println("ENTRE AL GET");
 		request.getServletContext().getRequestDispatcher("/ElaboracionHorarios/cargarExcel.jsp").forward(request, response);
 	}
 	
@@ -158,7 +156,7 @@ public class CargarExcel extends ActionServlet  {
 	            			
 	            		}
 	            	}
-	            	System.out.println("registro:"+ilistaCurso);
+	            	//System.out.println("registro:"+ilistaCurso);
 	                listaHorario.add(horarios);    
 	                
                 }else{
