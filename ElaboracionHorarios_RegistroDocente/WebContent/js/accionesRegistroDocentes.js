@@ -21,7 +21,7 @@ $( document ).ready(function() {
 		if(telefono!=''){
 			var rows = [];
 			rows.push({
-	            id_telefono: -1,
+	            id: -1,
 	            telefono: telefono,
 	            id_local: telefono
 	        });
@@ -38,7 +38,7 @@ $( document ).ready(function() {
 		if(numero!=''&&tipodoc!=''){
 			var rows = [];
 			rows.push({
-	            id_numero: -1,
+	            id: -1,
 	            numero: numero,
 	            tipodoc:tipodoc,
 	            id_local: numero
@@ -55,7 +55,7 @@ $( document ).ready(function() {
 		if(email!=''){
 			var rows = [];
 			rows.push({
-	            id_email: -1,
+	            id: -1,
 	            email: email,
 	            id_local: email
 	        });

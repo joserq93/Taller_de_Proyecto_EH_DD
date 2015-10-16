@@ -10,10 +10,11 @@
 
 <link href="css/boostrap/bootstrap.min.css" rel="stylesheet" />
 <link href="css/boostrap/bootstrap-table.min.css" rel="stylesheet" />
+ <link href="css/dashboard.css" rel="stylesheet" />
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
  <script src="js/bootstrap-table.min.js"></script>
-<link href="css/dashboard.css" rel="stylesheet" />
+ <script src="js/validator.min.js"></script>
  <script src="js/combos.js"></script>
  <script src="js/accionesRegistroDocentes.js"></script>
 <title>Insert title here</title>
@@ -58,11 +59,11 @@
 			</div>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-		<form action="<%=getServletContext().getContextPath() %>/Guardar_Docente" method="post" class="form-horizontal" role="form">
+		<form class="form-horizontal" data-toggle="validator" role="form" id="formDocente">
 		<div class="row">
 		
 		<div class="col-md-6">
-		<input type="hidden" name="f" value="GuardarDocente" /> 
+		<input type="hidden" name="f" value="guardarDocente" /> 
 				
 				<fieldset>
 				<legend align="left">Datos Generales</legend>
@@ -76,21 +77,21 @@
 				<div class="form-group">
 				<label for="Nombres" class="col-sm-3 control-label"  >Nombres: </label>
 				<div class="col-sm-9">
-				<input type="text" name="nombres" class="form-control input-sm"/>
+				<input type="text" name="nombres" class="form-control input-sm" required/>
 				</div>
 				</div>
 				
 				<div class="form-group">
 				<label for="apellido_paterno" class="col-sm-3 control-label" >Apellido Paterno:</label>
 				<div class="col-sm-9">
-				 <input type="text" name="apellidopaterno" class="form-control input-sm"/>
+				 <input type="text" name="apellidopaterno" class="form-control input-sm" required/>
 				 </div>
 				 </div>
 				 
 				 <div class="form-group">
 				<label for="apellido_materno" class="col-sm-3 control-label">Apellido Materno:</label>
 				<div class="col-sm-9">
-				 <input type="text" name="apellidomaterno" class="form-control input-sm"/>
+				 <input type="text" name="apellidomaterno" class="form-control input-sm" required/>
 				 </div>
 				 </div>
 				 
@@ -141,7 +142,7 @@
 			  <div class="form-group">
 			  <label for="combo_departamentos_1" class="col-sm-3 contro1-label">Departamento:</label>
 			  <div class="col-sm-9">
-			  <select id="combo_departamentos_1" class="form-control input-sm" name="departamento1">
+			  <select id="combo_departamentos_1" class="form-control input-sm" name="departamento1" required>
 				  <option>Seleccionar</option>
 			  </select>
 			  </div>
@@ -150,7 +151,7 @@
 			  <div class="form-group">
 			  <label for="combo_provincias_1" class="col-sm-3 contro1-label">Provincia</label>
 			   <div class="col-sm-9">
-			  <select id="combo_provincias_1" class="form-control input-sm" disabled="true" name="provincia1">
+			  <select id="combo_provincias_1" class="form-control input-sm" disabled="true" name="provincia1" required>
 				  <option>Seleccionar</option>
 			  </select>
 			  </div>
@@ -216,7 +217,7 @@
 				  <div class="col-sm-9">
 				  <div class="row">
 					  <div class="col-xs-9">
-						<input type="text" name="telefono" id="telefono" class="form-control input-sm"/>
+						<input type="number" id="telefono" class="form-control input-sm"/>
 					  </div>
 					  <div class="col-xs-3">
 						<button type="button" class="btn btn-success btn-addItem" data-method="remove" data-table="telefono">-</button>
@@ -229,7 +230,7 @@
 				    <thead>
 				    <tr>
 				        <th data-field="state" data-checkbox="true"></th>
-				        <th data-field="id_telefono" data-visible="false">Id</th>
+				        <th data-field="id" data-visible="false">Id</th>
 				        <th data-field="id_local" data-visible="false">Id_local</th>
 				        <th data-field="telefono">Telefono</th>
 				    </tr>
@@ -242,7 +243,7 @@
 				 <div class="col-sm-9">
 				 <div class="row">
 					  <div class="col-xs-9">
-					  <input type="text" name="email" class="form-control input-sm" id="email" />
+					  <input type="email" class="form-control input-sm" id="email"/>
 					  </div>
 					  <div class="col-xs-3">
 						<button type="button" class="btn btn-success btn-addItem" data-method="remove" data-table="email">-</button>
@@ -256,7 +257,7 @@
 				    <thead>
 				    <tr>
 				        <th data-field="state" data-checkbox="true"></th>
-				        <th data-field="id_email" data-visible="false">Id</th>
+				        <th data-field="id" data-visible="false">Id</th>
 				        <th data-field="id_local" data-visible="false">Id_local</th>
 				        <th data-field="email">E-mail</th>
 				    </tr>
@@ -265,9 +266,9 @@
 				</br>	
 				
 				<div class="form-group">
-				 <label for="email" class="col-sm-3 contro1-label">Tipo Doc.:</label> 
+				 <label class="col-sm-3 contro1-label">Tipo Doc.:</label> 
 				<div class="col-sm-9">
-				 <select size="1" name="tipodoc" id="tipodoc" class="form-control input-sm">
+				 <select size="1" id="tipodoc" class="form-control input-sm">
 	                	<option value="DNI">DNI</option>
 	                    <option value="Licencia de Conducir">Licencia de Conducir</option>
 	                           </select>
@@ -275,11 +276,11 @@
 	                    </div>
 	             
 	              <div class="form-group">
-				 <label for="email" class="col-sm-3 contro1-label">Numero:</label>
+				 <label class="col-sm-3 contro1-label">Numero:</label>
 				 <div class="col-sm-9">
 				 <div class="row">
 					  <div class="col-xs-9">
-					  <input type="text" name="numero" id="numero"class="form-control input-sm"/>
+					  <input type="text" id="numeroDocumento" class="form-control input-sm"/>
 					  </div>
 					  <div class="col-xs-3">
 						<button type="button" class="btn btn-success btn-addItem" data-method="remove" data-table="documento">-</button>
@@ -317,7 +318,7 @@
 				 <div class="form-group">
 				 <label for="email" class="col-sm-3 contro1-label">Grado Academico:</label>
 				 <div class="col-sm-9">
-				 <select size="1" name="gradoacademico" class="form-control input-sm">
+				 <select size="1" class="form-control input-sm">
 	                	<option value="Master">Master</option>
 	                    <option value="Doctor">Doctor</option>
 	                    </select>
@@ -327,7 +328,7 @@
 	                 <div class="form-group">
 				 <label for="email" class="col-sm-3 contro1-label">Profecion:</label>
 				 <div class="col-sm-9">
-				 <select size="1" name="profecion" class="form-control input-sm">
+				 <select size="1" class="form-control input-sm">
 	                	<option value="Ing.Sistemas">Ing.Sistemas</option>
 	                    <option value="Ing.Industrial">Ing.Industrial</option>
 	                    </select>
@@ -335,9 +336,9 @@
 	                    </div>   
 	                             
 	             <div class="form-group">
-				 <label for="email" class="col-sm-3 contro1-label">Especialidad:</label>
+				 <label class="col-sm-3 contro1-label">Especialidad:</label>
 					 <div class="col-sm-9">
-						 <select size="1" name="especialidad" class="form-control input-sm">
+						 <select size="1" class="form-control input-sm">
 			                	<option value="S.I">S.I</option>
 			                    <option value="T.I">T.I</option>
 			             </select>
@@ -345,16 +346,16 @@
 	             </div>
 	                    
 	               <div class="form-group">
-				 <label for="email" class="col-sm-3 contro1-label">Institucion:</label>
+				 <label class="col-sm-3 contro1-label">Institucion:</label>
 				 <div class="col-sm-9">
-				 <input type="text" name="institucion" class="form-control input-sm"/>  
+				 <input type="text" class="form-control input-sm"/>  
 	              </div>
 	              </div>
 	              
 	             <div class="form-group">
-				 <label for="email" class="col-sm-3 contro1-label">Fecha de Ingreso:</label>
+				 <label class="col-sm-3 contro1-label">Fecha de Ingreso:</label>
 				 <div class="col-sm-9">
-				 <input type="date" name="fechaingreso" class="form-control input-sm"/>
+				 <input type="date" class="form-control input-sm"/>
 				 </div>
 				 </div>
 				 <table class="table table-hover">
@@ -384,9 +385,11 @@
 				</table>
 				 
 				 
-				<p><input type="submit"value="Agregar" class="btn btn-primary"></p>
 		
 			</div>
+			<div class="form-group">
+				 <input type="submit"value="Agregar" class="btn btn-primary">
+	        </div>
 		</div>
 		</form>
 		</div>
@@ -441,12 +444,45 @@
 			     <p>.</p>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
 		      </div>
 		    </div>
 
 		  </div>
 		</div>
 		<!-- Fin Modal -->
+		<script>
+		var form =$('#formDocente');
+		form.validator().on('submit', function (e) {
+		  if (e.isDefaultPrevented()) {
+			  
+		  } else {
+			  e.preventDefault();
+			  var dataForm=form.serializeArray();
+			  	/*console.log(dataTelefonos);
+				dataForm.push(dataTelefonos);*/
+			  console.log(dataForm);
+			  $.ajax({
+				  url: "<%=getServletContext().getContextPath() %>/Registrar_Docente",
+				  method: "POST",
+				  data: dataForm,
+				  dataType: "json",
+				  
+				}).done(function( departamentos ) {
+					console.log(departamentos);
+					
+				});
+		    // everything looks good!
+		  }
+		});
+		
+		function telefonoataPost(nombreTabla){
+		var dataTelefonos=$('#table_'+nombreTabla).bootstrapTable('getData');
+		dataTelefonos.each(function( index, filaTabla ) {
+			
+		});
+			
+		}
+</script>
 </body>
 </html>

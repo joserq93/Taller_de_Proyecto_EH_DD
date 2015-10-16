@@ -56,6 +56,8 @@ $( document ).ready(function() {
 	});
 // carga combo distritos
 	$("select[id*='combo_provincias']").on('change', function() {
+
+        $('#formDocente').validator('revalidateField', 'combo_departamentos_1');
 		var grupo=this.id.slice(17);
 		var combo_distritos=$('#combo_distritos_'+grupo);
 		console.log(grupo);
@@ -77,6 +79,7 @@ $( document ).ready(function() {
 				});
 			});
 	});
+	
 	
 });
 
