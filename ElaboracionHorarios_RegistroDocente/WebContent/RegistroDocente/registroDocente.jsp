@@ -50,7 +50,7 @@
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
 					<li class="active"><a href="#">Malla curricular</a></li>
-					<li><a href="Registrar_Docente?f=registrarDocente">Registro de docentes</a></li>
+					<li><a href="Gestionar_Docente?f=registrarDocente">Registro de docentes</a></li>
 					<li><a data-toggle="modal" href="#myModal">Elaboracion de Horarios</a></li>
 				</ul>
 			</div>
@@ -463,7 +463,7 @@
 				dataForm.push(dataTelefonos);*/
 			  console.log(dataForm);
 			  $.ajax({
-				  url: "<%=getServletContext().getContextPath() %>/Registrar_Docente",
+				  url: "<%=getServletContext().getContextPath() %>/Gestionar_Docente",
 				  method: "POST",
 				  data: dataForm,
 				  dataType: "json",

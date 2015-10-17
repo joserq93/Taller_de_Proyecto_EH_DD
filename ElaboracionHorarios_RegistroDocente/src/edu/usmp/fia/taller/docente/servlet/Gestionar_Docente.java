@@ -19,8 +19,8 @@ import edu.usmp.fia.taller.common.dao.modules.registro.docente.DAOFactoryRegDoce
 /**
  * Servlet implementation class Registrar_Docente
  */
-@WebServlet("/Registrar_Docente")
-public class Registrar_Docente extends ActionServlet {
+@WebServlet("/Gestionar_Docente")
+public class Gestionar_Docente extends ActionServlet {
 	
 	@HttpMethod(HttpMethodType.GET)
 	@RequireLogin(true)
