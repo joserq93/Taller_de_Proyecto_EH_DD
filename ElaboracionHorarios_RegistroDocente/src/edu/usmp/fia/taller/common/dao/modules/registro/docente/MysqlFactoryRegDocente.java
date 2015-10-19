@@ -79,7 +79,7 @@ public class MysqlFactoryRegDocente extends MySqlDAOFactory implements DAOFactor
 	}
 
 	@Override
-	public String guardarDocente(Docente docente) throws Exception {
+	public boolean guardarDocente(Docente docente) throws Exception {
 		String resultado="";
 		try {
 			Connection conexion = (Connection) getConnection();
@@ -87,28 +87,23 @@ public class MysqlFactoryRegDocente extends MySqlDAOFactory implements DAOFactor
 			//INSERT INTO  VALUES (NULL, 'adsadasd', 'asdasd', 'asdasd', 'asdasd', '1');
 			
 			
-			String sqlPersona = "insert into t_persona (id,nombre, apellido_paterno, apellido_materno, sexo,email)"
-					+ "values('49','"+docente.getNombre()+"','"+docente.getApellido_paterno()+"','"+docente.getApellido_materno()
-					+"','"+docente.getSexo()+"','')";
-
-			int id_persona=stmt.executeUpdate(sqlPersona,Statement.RETURN_GENERATED_KEYS);
 			//(id_profesor ,id_Pais_nacionalidad ,id_Departamento_nacionalidad ,id_Provincia_nacionalidad ,id_Distrito_nacionalidad ,id_Departamento_direccion ,id_Provincia_direccion ,id_Distrito_direccion ,url_foto ,estado ,estado_civil ,fecha_nacimiento ,referencia_direccion)
 			String consulta = "insert into t_profesor(id_profesor,id_Pais_nacionalidad,"
 					+ "id_Departamento_nacionalidad,id_Provincia_nacionalidad,id_Distrito_nacionalidad,"
 					+ "id_Departamento_direccion,id_Provincia_direccion,id_Distrito_direccion,"
 					+ "url_foto,estado,estado_civil,"
 					+ "fecha_nacimiento,referencia_direccion)"
-					+ "values("+id_persona+",'"+docente.getId_Pais_nacionalidad()
+					+ "values("+docente.getId_docente()+",'"+docente.getId_Pais_nacionalidad()
 					+"','"+docente.getId_Departamento_nacionalidad()+"','"+docente.getId_Provincia_nacionalidad()
 					+"','"+docente.getId_Distrito_nacionalidad()+"','"+docente.getId_Departamento_direccion()
 					+"','"+docente.getId_Provincia_direccion()+"','"+docente.getId_Distrito_direccion()
 					+"','"+docente.getUrl_foto()+"','"+docente.getEstado()
 					+"','"+docente.getEstado_civil()+"','"+docente.getFecha_nacimiento()+"','"+docente.getReferencia_direccion()+"')";
 
-			System.out.println(consulta+docente.getFecha_nacimiento());
+			
 			int filas=stmt.executeUpdate(consulta,Statement.RETURN_GENERATED_KEYS);
 			
-			return id_persona+"";
+			return true;
 			
 			
 		} catch (Exception e) {
@@ -117,9 +112,9 @@ public class MysqlFactoryRegDocente extends MySqlDAOFactory implements DAOFactor
 		}
 		
 		
-		return resultado;
+		return false;
 	}
-
+	
 	
 	public List<Ubigeo> getProvincias(String coddpto) throws Exception {
 		// TODO Auto-generated method stub

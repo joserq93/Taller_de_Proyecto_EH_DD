@@ -5,6 +5,8 @@ public class Telefono {
 	private int idTelefono;
 	private String telefono;
 	private String id_profesor;
+	private String tipoTelefono;
+	
 	public int getIdTelefono() {
 		return idTelefono;
 	}
@@ -22,6 +24,12 @@ public class Telefono {
 	}
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	public String getTipoTelefono() {
+		return tipoTelefono;
+	}
+	public void setTipoTelefono(String tipoTelefono) {
+		this.tipoTelefono = tipoTelefono;
 	}
 
 }

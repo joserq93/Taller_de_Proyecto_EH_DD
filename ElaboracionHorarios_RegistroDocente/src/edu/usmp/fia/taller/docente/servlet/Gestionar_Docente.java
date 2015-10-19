@@ -21,8 +21,12 @@ import edu.usmp.fia.taller.common.action.HttpMethod;
 import edu.usmp.fia.taller.common.action.HttpMethodType;
 import edu.usmp.fia.taller.common.action.RequireLogin;
 import edu.usmp.fia.taller.common.bean.Docente;
+import edu.usmp.fia.taller.common.bean.Persona;
 import edu.usmp.fia.taller.common.dao.DAOFactory;
+import edu.usmp.fia.taller.common.dao.modules.email.DAOFactoryEmail;
+import edu.usmp.fia.taller.common.dao.modules.persona.DAOFactoryPersona;
 import edu.usmp.fia.taller.common.dao.modules.registro.docente.DAOFactoryRegDocente;
+import edu.usmp.fia.taller.common.dao.modules.telefono.DAOFactoryTelefono;
 
 /**
  * Servlet implementation class Registrar_Docente
@@ -41,18 +45,16 @@ public class Gestionar_Docente extends ActionServlet {
 	@RequireLogin(true)
 	public void guardarDocente() throws Exception {
 		Docente docente=null;
+		Persona persona=null;
 		try {
-			docente=new Docente();
 		//	SimpleDateFormat forma=new SimpleDateFormat("yyyy-MM-dd");
 
-			String json_telefono=request.getParameter("json_telefono");
-			String json_email=request.getParameter("json_email");
-			String json_documento=request.getParameter("json_documento");
+			
 			//String jsonbj = new Gson().toJson(json);
 			
-			insertarCamposDinamicos("t_telefono_profesor",json_telefono,"telefono","1");
+			/*insertarCamposDinamicos("t_telefono_profesor",json_telefono,"telefono","1");
 			insertarCamposDinamicos("t_telefono_profesor",json_email,"email","1");
-			insertarCamposDinamicos("t_telefono_profesor",json_documento,"documento","1");
+			insertarCamposDinamicos("t_telefono_profesor",json_documento,"documento","1");*/
 			/*
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
@@ -63,8 +65,8 @@ public class Gestionar_Docente extends ActionServlet {
 			String nombre=request.getParameter("nombres");
 			String apellido_paterno=request.getParameter("apellidopaterno");
 			String apellido_materno=request.getParameter("apellidomaterno");
-			String sexo=request.getParameter("sexo");
-			char estado_civil=request.getParameter("estadocivil").charAt(0);
+			//String sexo=request.getParameter("sexo");
+			//char estado_civil=request.getParameter("estadocivil").charAt(0);
 			String fecha_nacimiento=request.getParameter("fechanacimiento");
 			int id_Pais_nacionalidad=Integer.parseInt(request.getParameter("pais"));
 			int id_Departamento_nacionalidad=Integer.parseInt(request.getParameter("departamento1"));
@@ -75,25 +77,22 @@ public class Gestionar_Docente extends ActionServlet {
 			int id_Distrito_direccion=Integer.parseInt(request.getParameter("distrito2"));
 			String referencia_direccion=request.getParameter("referencia");
 			char estado='1';
-			//int telefono=Integer.parseInt(request.getParameter("telefono"));
-			/*String correo=request.getParameter("email");
-			String tipo_documento=request.getParameter("tipodoc");
-			String grado_academico=request.getParameter("gradoacademico");
-			String profecion=request.getParameter("profecion");
-			String especialidad=request.getParameter("especialidad");
-			String institucion=request.getParameter("institucion");
-			String fecha_ingreso=request.getParameter("fechaingreso");
-			docente.setTelefono(telefono);*/
 
+			persona=new Persona();
 
-			System.out.print("HOLA 100");
+			persona.setNombre1(nombre);
+			persona.setApePaterno(apellido_materno);
+			persona.setApeMaterno(apellido_paterno);
+			
+			DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+			DAOFactoryPersona regPersona = dao.getRegistroPersona();
+			int idPersona = regPersona.guardarPersona(persona);
+			
+			docente=new Docente();
+			docente.setId_docente(idPersona);
 			docente.setUrl_foto(url_foto);
-			docente.setNombre(nombre);
-			docente.setApellido_materno(apellido_materno);
-			docente.setApellido_paterno(apellido_paterno);
-			docente.setSexo(sexo);
-			docente.setEstado_civil(estado_civil);
-			System.out.print("HOLA 0");
+			//docente.setSexo(sexo);
+			//docente.setEstado_civil(estado_civil);
 			//docente.setFecha_nacimiento(fecha_nacimiento);
 			docente.setId_Pais_nacionalidad(id_Pais_nacionalidad);
 			docente.setId_Departamento_nacionalidad(id_Departamento_nacionalidad);
@@ -115,12 +114,21 @@ public class Gestionar_Docente extends ActionServlet {
 			docente.setInstitucion(institucion);
 			docente.setFecha_ingreso(fecha_ingreso);*/
 
-			DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 			DAOFactoryRegDocente regdoce = dao.getRegistroDocente();
-			String id_docente = regdoce.guardarDocente(docente);
-			dao.insertarCamposDinamicos("t_telefono_profesor",json_telefono,"telefono",id_docente);
+			boolean resultadoExito = regdoce.guardarDocente(docente);
 			
-			request.setAttribute("mensaje", id_docente);
+			if(resultadoExito){
+				String json_telefono=request.getParameter("json_telefono");
+				String json_email=request.getParameter("json_email");
+				String json_documento=request.getParameter("json_documento");
+
+				DAOFactoryTelefono regTelefono = dao.getRegistroTelefono();
+				regTelefono.guardarTelefonos(json_telefono, ""+idPersona);
+				DAOFactoryEmail regEmail = dao.getRegistroEmail();
+				regEmail.guardarEmails(json_email, ""+idPersona);
+			}
+			
+			request.setAttribute("mensaje", "nada");
 
 			request.getRequestDispatcher("/RegistroDocente/mensaje.jsp").forward(request, response);
 			
@@ -129,39 +137,5 @@ public class Gestionar_Docente extends ActionServlet {
 			System.out.print(e.getMessage());
 		}
 	}
-	
-	private boolean insertarCamposDinamicos(String tabla,String data,String campo,String id_profesor){
-		try{
-			 JSONArray json2 =(JSONArray) new JSONParser().parse(data.toString());
-			 //DELETE FROM t_telefono_profesor WHERE `id_telefono` not in (1,3) and `id_profesor`=1
-			 String deleteClausule="";
-			 String insertsNuevos="";
-			 for(int i =0; i<json2.size();i++){
-				 JSONObject jsonObjet= (JSONObject) json2.get(i);
-				 String campoJson=jsonObjet.get("campo").toString();
-					 if(i==0)
-						 deleteClausule+=campoJson;
-					 else
-						 deleteClausule+=","+campoJson;
-					 
-					 if(jsonObjet.get("id").toString().equals("-1")){
-						 if(i==0)
-							 insertsNuevos+=campoJson;
-						 else
-							 insertsNuevos+=","+campoJson;
-					 };
-			 }
-			 if(!deleteClausule.equals("")){
-				 System.out.println("DELETE FROM "+tabla+" WHERE "+campo+" not in ("+deleteClausule+") and `id_profesor`="+id_profesor);
-				 System.out.println("insertsNuevos;"+insertsNuevos);
-			 }
-			  }
-			  catch(ParseException pe){
-			    System.out.println(pe);
-			  }
-		
-		return true;
-	}
-	
 
 }

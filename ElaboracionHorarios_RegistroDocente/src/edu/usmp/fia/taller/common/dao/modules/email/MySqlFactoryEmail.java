@@ -1,6 +1,5 @@
-package edu.usmp.fia.taller.common.dao.modules.telefono;
+package edu.usmp.fia.taller.common.dao.modules.email;
 
-import java.sql.ResultSet;
 import java.sql.Statement;
 
 import org.json.simple.JSONArray;
@@ -10,14 +9,14 @@ import org.json.simple.parser.ParseException;
 
 import com.mysql.jdbc.Connection;
 
-import edu.usmp.fia.taller.common.bean.Telefono;
+import edu.usmp.fia.taller.common.bean.Email;
 import edu.usmp.fia.taller.common.dao.MySqlDAOFactory;
 import edu.usmp.fia.taller.common.dao.modules.registro.docente.DAOFactoryRegDocente;
 
-public class MySqlFactoryTelefono  extends MySqlDAOFactory implements DAOFactoryTelefono {
+public class MySqlFactoryEmail  extends MySqlDAOFactory implements DAOFactoryEmail {
 
 	@Override
-	public boolean guardarTelefono(Telefono telefono) throws Exception {
+	public boolean guardarEmail(Email email) throws Exception {
 		Connection conexion = (Connection) getConnection();
 		Statement stmt = conexion.createStatement();
 		
@@ -26,7 +25,7 @@ public class MySqlFactoryTelefono  extends MySqlDAOFactory implements DAOFactory
 			//INSERT INTO  VALUES (NULL, 'adsadasd', 'asdasd', 'asdasd', 'asdasd', '1');
 			
 			
-			String consulta = "INSERT INTO t_telefono_profesor (telefono,id_profesor) VALUES ('"+telefono.getTelefono()+"','"+telefono.getId_profesor()+"');";
+			String consulta = "INSERT INTO t_email_profesor (email,id_profesor) VALUES ('"+email.getEmail()+"','"+email.getIdProfesor()+"');";
 
 			int filas=stmt.executeUpdate(consulta);
 			
@@ -42,22 +41,17 @@ public class MySqlFactoryTelefono  extends MySqlDAOFactory implements DAOFactory
 	}
 	
 	@Override
-	public boolean guardarTelefonos(String json_telefonos,String id_profesor) throws Exception {
+	public boolean guardarEmails(String json_emails,String id_profesor) throws Exception {
 		Connection conexion = (Connection) getConnection();
-		Statement stmt = null;
-		ResultSet result =  null;
-		
-		String sqlDelete[]=insertarCamposDinamicos("t_telefono_profesor",json_telefonos,"telefono",id_profesor);
+		Statement stmt = conexion.createStatement();
+		String sqlDelete[]=insertarCamposDinamicos("t_email_profesor",json_emails,"email",id_profesor);
 		
 		try {
 			stmt.executeUpdate(sqlDelete[0]);
-			//String consulta = "INSERT INTO t_telefono_profesor (telefono,id_profesor) VALUES ('"+telefono.getTelefono()+"','"+telefono.getId_profesor()+"');";
-
 			stmt.executeUpdate(sqlDelete[1]);
 			
 			close(stmt);
 			close(conexion);
-
 			return true;
 		} catch (Exception e) {
 			
@@ -86,12 +80,12 @@ public class MySqlFactoryTelefono  extends MySqlDAOFactory implements DAOFactory
 						 deleteClausule+=","+"'"+campoJson+"'";
 					 
 					 if(jsonObjet.get("id").toString().equals("-1")){
-						 String numeroTelef=jsonObjet.get("campo").toString();
+						 String email=jsonObjet.get("campo").toString();
 						 if(i==0){
-							 insertsNuevos+="('"+id_profesor+"','"+numeroTelef+"'";
+							 insertsNuevos+="('"+id_profesor+"','"+email+"'";
 						 }
 						 else{
-							 insertsNuevos+="),('"+id_profesor+"','"+numeroTelef+"'";
+							 insertsNuevos+="),('"+id_profesor+"','"+email+"'";
 						 }
 					 }
 			 }
@@ -102,7 +96,8 @@ public class MySqlFactoryTelefono  extends MySqlDAOFactory implements DAOFactory
 			 
 			 if(!insertsNuevos.equals("")){
 				 insertsNuevos+=")";
-				 insert="INSERT INTO t_telefono_profesor (id_profesor, telefono) VALUES "+insertsNuevos;
+
+				 insert="INSERT INTO t_email_profesor (id_profesor, email) VALUES "+insertsNuevos;
 			 }
 			  
 		}
