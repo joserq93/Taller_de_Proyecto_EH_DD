@@ -44,9 +44,7 @@ public class MySqlFactoryTelefono  extends MySqlDAOFactory implements DAOFactory
 	@Override
 	public boolean guardarTelefonos(String json_telefonos,String id_profesor) throws Exception {
 		Connection conexion = (Connection) getConnection();
-		Statement stmt = null;
-		ResultSet result =  null;
-		
+		Statement stmt = conexion.createStatement();
 		String sqlDelete[]=insertarCamposDinamicos("t_telefono_profesor",json_telefonos,"telefono",id_profesor);
 		
 		try {
@@ -81,9 +79,9 @@ public class MySqlFactoryTelefono  extends MySqlDAOFactory implements DAOFactory
 				 JSONObject jsonObjet= (JSONObject) json2.get(i);
 				 String campoJson=jsonObjet.get("campo").toString();
 					 if(i==0)
-						 deleteClausule+="'"+campoJson+"'";
+						 deleteClausule+=campoJson;
 					 else
-						 deleteClausule+=","+"'"+campoJson+"'";
+						 deleteClausule+=","+campoJson;
 					 
 					 if(jsonObjet.get("id").toString().equals("-1")){
 						 String numeroTelef=jsonObjet.get("campo").toString();
