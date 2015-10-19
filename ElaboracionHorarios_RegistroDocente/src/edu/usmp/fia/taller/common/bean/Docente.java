@@ -18,58 +18,19 @@ public class Docente {
 	private String apellido_materno;
 	private String apellido_paterno;
 	private String url_foto;
-	private int telefono;
-	private String correo;
 	private char estado;
 	private char estado_civil;
-	private char sexo;
-	private String fecha_nacimiento;
+	private String sexo;
 	private String referencia_direccion;
-	private String tipo_documento;
-	private String grado_academico;
-	private String profecion;
-	private String especialidad;
-	private String institucion;
-	private String fecha_ingreso;
+	public String getReferencia_direccion() {
+		return referencia_direccion;
+	}
+	public void setReferencia_direccion(String referencia_direccion) {
+		this.referencia_direccion = referencia_direccion;
+	}
+	private String fecha_nacimiento;
 	
 	
-	
-	public String getTipo_documento() {
-		return tipo_documento;
-	}
-	public void setTipo_documento(String tipo_documento) {
-		this.tipo_documento = tipo_documento;
-	}
-	public String getGrado_academico() {
-		return grado_academico;
-	}
-	public void setGrado_academico(String grado_academico) {
-		this.grado_academico = grado_academico;
-	}
-	public String getProfecion() {
-		return profecion;
-	}
-	public void setProfecion(String profecion) {
-		this.profecion = profecion;
-	}
-	public String getEspecialidad() {
-		return especialidad;
-	}
-	public void setEspecialidad(String especialidad) {
-		this.especialidad = especialidad;
-	}
-	public String getInstitucion() {
-		return institucion;
-	}
-	public void setInstitucion(String institucion) {
-		this.institucion = institucion;
-	}
-	public String getFecha_ingreso() {
-		return fecha_ingreso;
-	}
-	public void setFecha_ingreso(String fecha_ingreso) {
-		this.fecha_ingreso = fecha_ingreso;
-	}
 	public int getId_docente() {
 		return id_docente;
 	}
@@ -142,18 +103,7 @@ public class Docente {
 	public void setUrl_foto(String url_foto) {
 		this.url_foto = url_foto;
 	}
-	public int getTelefono() {
-		return telefono;
-	}
-	public void setTelefono(int telefono) {
-		this.telefono = telefono;
-	}
-	public String getCorreo() {
-		return correo;
-	}
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
+	
 	public char getEstado() {
 		return estado;
 	}
@@ -166,10 +116,10 @@ public class Docente {
 	public void setEstado_civil(char estado_civil) {
 		this.estado_civil = estado_civil;
 	}
-	public char getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
-	public void setSexo(char sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 	public String getFecha_nacimiento() {
@@ -178,12 +128,7 @@ public class Docente {
 	public void setFecha_nacimiento(String fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
-	public String getReferencia_direccion() {
-		return referencia_direccion;
-	}
-	public void setReferencia_direccion(String referencia_direccion) {
-		this.referencia_direccion = referencia_direccion;
-	}
+
 	
 	//private List<UsuarioDetalle> detalle;
 

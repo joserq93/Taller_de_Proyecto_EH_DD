@@ -14,6 +14,11 @@ import org.apache.log4j.Logger;
 
 
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import edu.usmp.fia.taller.common.dao.modules.DAOFactoryGeneral;
 import edu.usmp.fia.taller.common.dao.modules.MysqlFactoryGeneral;
 import edu.usmp.fia.taller.common.dao.modules.elaboracionhorario.DAOFactoryElabHorarios;
@@ -46,7 +51,7 @@ public class MySqlDAOFactory extends DAOFactory {
 				switch (ThreadUtil.getCallerModule()) {
 				case 0:
 					userName = "root";
-					password = "root";
+					password = "";
 					break;
 				case 1:
 					userName = "seguimiento";
@@ -70,6 +75,38 @@ public class MySqlDAOFactory extends DAOFactory {
 			}
 		}
 		return connection;
+	}
+	public boolean insertarCamposDinamicos(String tabla,String data,String campo,String id_profesor){
+		try{
+			 JSONArray json2 =(JSONArray) new JSONParser().parse(data.toString());
+			 //DELETE FROM t_telefono_profesor WHERE `id_telefono` not in (1,3) and `id_profesor`=1
+			 String deleteClausule="";
+			 String insertsNuevos="";
+			 for(int i =0; i<json2.size();i++){
+				 JSONObject jsonObjet= (JSONObject) json2.get(i);
+				 String campoJson=jsonObjet.get("campo").toString();
+					 if(i==0)
+						 deleteClausule+=campoJson;
+					 else
+						 deleteClausule+=","+campoJson;
+					 
+					 if(jsonObjet.get("id").toString().equals("-1")){
+						 if(i==0)
+							 insertsNuevos+=campoJson;
+						 else
+							 insertsNuevos+=","+campoJson;
+					 };
+			 }
+			 if(!deleteClausule.equals("")){
+				 System.out.println("DELETE FROM "+tabla+" WHERE "+campo+" not in ("+deleteClausule+") and `id_profesor`="+id_profesor);
+				 System.out.println("insertsNuevos;"+insertsNuevos);
+			 }
+			  }
+			  catch(ParseException pe){
+			    System.out.println(pe);
+			  }
+		
+		return true;
 	}
 
 
