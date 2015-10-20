@@ -16,7 +16,9 @@ import com.mysql.jdbc.PreparedStatement;
 
 import edu.usmp.fia.taller.common.bean.Dia;
 import edu.usmp.fia.taller.common.bean.Docente;
+import edu.usmp.fia.taller.common.bean.Documento;
 import edu.usmp.fia.taller.common.bean.Email;
+import edu.usmp.fia.taller.common.bean.GradoAcademico;
 import edu.usmp.fia.taller.common.bean.Hora;
 import edu.usmp.fia.taller.common.bean.Persona;
 import edu.usmp.fia.taller.common.bean.Telefono;
@@ -436,8 +438,6 @@ public class MysqlRegistroDocente extends MySqlDAOFactory implements DAORegistro
 		
 		try {
 			stmt.executeUpdate(sqlDelete[0]);
-			//String consulta = "INSERT INTO t_telefono_profesor (telefono,id_profesor) VALUES ('"+telefono.getTelefono()+"','"+telefono.getId_profesor()+"');";
-
 			stmt.executeUpdate(sqlDelete[1]);
 			
 			close(stmt);
@@ -498,4 +498,163 @@ public class MysqlRegistroDocente extends MySqlDAOFactory implements DAORegistro
 		return sqls;
 	}
 //----------------------------FIN metodo de telefono
+	
+	private String[] insertarCamposDinamicosDocumento(String tabla,String data,String id_profesor){
+		String sqls[];
+		String delete="";
+		String insert="";
+		try{
+			 JSONArray json2 =(JSONArray) new JSONParser().parse(data.toString());
+			 //DELETE FROM t_telefono_profesor WHERE `id_telefono` not in (1,3) and `id_profesor`=1
+			 String deleteClausule="";
+			 String insertsNuevos="";
+			 for(int i =0; i<json2.size();i++){
+				 JSONObject jsonObjet= (JSONObject) json2.get(i);
+				 String numDoc=jsonObjet.get("campo").toString();
+					 if(i==0)
+						 deleteClausule+="'"+numDoc+"'";
+					 else
+						 deleteClausule+=","+"'"+numDoc+"'";
+					 
+					 if(jsonObjet.get("id").toString().equals("-1")){
+						 String tipodoc=jsonObjet.get("tipodoc").toString();
+						 String numDoc2=jsonObjet.get("campo").toString();
+						 if(i==0){
+							 insertsNuevos+="('"+id_profesor+"','"+numDoc2+"','"+tipodoc+"'";
+						 }
+						 else{
+							 insertsNuevos+="),('"+id_profesor+"','"+numDoc2+"','"+tipodoc+"'";
+						 }
+					 }
+			 }
+			 
+			 if(!deleteClausule.equals("")){
+				 delete = "DELETE FROM "+tabla+" WHERE numero not in ("+deleteClausule+") and `id_profesor`="+id_profesor;
+			 }
+			 
+			 if(!insertsNuevos.equals("")){
+				 insertsNuevos+=")";
+
+				 insert="INSERT INTO t_documento_profesor (id_profesor, numero, tipo) VALUES "+insertsNuevos;
+			 }
+			  
+		}
+		catch(ParseException pe){
+			    System.out.println(pe);
+		}
+		sqls = new String[]{delete,insert};
+		return sqls;
+	}
+//----------------------------FIN metodo de Documento
+
+	private String[] insertarCamposDinamicosGrado(String tabla,String data,String id_profesor){
+		String sqls[];
+		String delete="";
+		String insert="";
+		try{
+			 JSONArray json2 =(JSONArray) new JSONParser().parse(data.toString());
+			 //DELETE FROM t_telefono_profesor WHERE `id_telefono` not in (1,3) and `id_profesor`=1
+			 String deleteClausule="";
+			 String insertsNuevos="";
+			 for(int i =0; i<json2.size();i++){
+				 JSONObject jsonObjet= (JSONObject) json2.get(i);
+				 String numDocId=jsonObjet.get("id").toString();
+				 String especialidad=jsonObjet.get("especialidad").toString();
+				 String gradoAcademico=jsonObjet.get("gradoAcademico").toString();
+				 String profesion=jsonObjet.get("profesion").toString();
+				 String institucion=jsonObjet.get("institucion").toString();
+				 String fechaIngreso=jsonObjet.get("fechaIngreso").toString();
+				 if(!numDocId.equals("-1")){
+					 if(i==0){
+						deleteClausule+="'"+numDocId+"'";
+					 }
+					 else{
+						deleteClausule+=","+"'"+numDocId+"'";
+					 }
+				 }else{
+					
+					 if(i==0){
+						deleteClausule+="'"+numDocId+"'";
+						insertsNuevos+="('"+id_profesor+"','"+especialidad+"','"+gradoAcademico+"','"+profesion+"','"+institucion+"','"+fechaIngreso+"'";
+					 }
+					 else{
+						deleteClausule+=","+"'"+numDocId+"'";
+						insertsNuevos+="),('"+id_profesor+"','"+especialidad+"','"+gradoAcademico+"','"+profesion+"','"+institucion+"','"+fechaIngreso+"'";
+					 }
+				}
+			 }
+			 
+			 if(!deleteClausule.equals("")){
+				 delete = "DELETE FROM "+tabla+" WHERE id_grado_academico not in ("+deleteClausule+") and `id_profesor`="+id_profesor;
+			 }
+			 
+			 if(!insertsNuevos.equals("")){
+				 insertsNuevos+=")";
+
+				 insert="INSERT INTO t_grado_academico_profesor (id_profesor, especialidad, grado, profesion, nombre_institucion, fecha_ingreso) VALUES "+insertsNuevos;
+			 }
+			  
+		}
+		catch(ParseException pe){
+			    System.out.println(pe);
+		}
+		sqls = new String[]{delete,insert};
+		return sqls;
+	}
+//----------------------------FIN metodo de grado academico
+
+	@Override
+	public boolean guardarDocumento(Documento documento) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean guardarDocumentos(String json_documentos, String id_profesor) throws Exception {
+		Connection conexion = (Connection) getConnection();
+		Statement stmt = conexion.createStatement();
+		String sqlDelete[]=insertarCamposDinamicosDocumento("t_documento_profesor",json_documentos,id_profesor);
+
+		try {
+			stmt.executeUpdate(sqlDelete[0]);
+			stmt.executeUpdate(sqlDelete[1]);
+			
+			close(stmt);
+			close(conexion);
+
+			return true;
+		} catch (Exception e) {
+			
+			System.out.print(e.getMessage());
+		}
+		return false;
+	}
+
+	@Override
+	public boolean guardarGradoAcademico(GradoAcademico gradoAcademico)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean guardarGradosAcademicos(String json_gradoAcademico, String id_profesor) throws Exception {
+		Connection conexion = (Connection) getConnection();
+		Statement stmt = conexion.createStatement();
+		String sqlDelete[]=insertarCamposDinamicosGrado("t_grado_academico_profesor",json_gradoAcademico,id_profesor);
+
+		try {
+			stmt.executeUpdate(sqlDelete[0]);
+			stmt.executeUpdate(sqlDelete[1]);
+			
+			close(stmt);
+			close(conexion);
+
+			return true;
+		} catch (Exception e) {
+			
+			System.out.print(e.getMessage());
+		}
+		return false;
+	}
 }

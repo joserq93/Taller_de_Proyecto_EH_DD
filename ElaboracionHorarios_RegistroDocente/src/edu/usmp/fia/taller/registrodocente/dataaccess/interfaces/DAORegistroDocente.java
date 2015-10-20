@@ -5,7 +5,9 @@ import java.util.Vector;
 
 import edu.usmp.fia.taller.common.bean.Dia;
 import edu.usmp.fia.taller.common.bean.Docente;
+import edu.usmp.fia.taller.common.bean.Documento;
 import edu.usmp.fia.taller.common.bean.Email;
+import edu.usmp.fia.taller.common.bean.GradoAcademico;
 import edu.usmp.fia.taller.common.bean.Hora;
 import edu.usmp.fia.taller.common.bean.Persona;
 import edu.usmp.fia.taller.common.bean.Telefono;
@@ -38,4 +40,14 @@ public interface DAORegistroDocente {
 	public boolean guardarTelefono(Telefono telefono) throws Exception;
 	public boolean guardarTelefonos(String json_telefonos,String id_profesor) throws Exception;
 //----------------------------FIN metodo de telefono
+	
+//----------------------------INICIO metodo de documento
+	public boolean guardarDocumento(Documento documento) throws Exception;
+	public boolean guardarDocumentos(String json_documentos,String id_profesor) throws Exception;
+//----------------------------FIN metodo de documento
+	
+//----------------------------INICIO metodo de GradoAcademico
+	public boolean guardarGradoAcademico(GradoAcademico gradoAcademico) throws Exception;
+	public boolean guardarGradosAcademicos(String json_gradoAcademico,String id_profesor) throws Exception;
+//----------------------------FIN metodo de GradoAcademico
 }

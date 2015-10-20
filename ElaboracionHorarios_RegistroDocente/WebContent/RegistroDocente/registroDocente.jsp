@@ -270,8 +270,8 @@
 				 <label class="col-sm-3 contro1-label">Tipo Doc.:</label> 
 				<div class="col-sm-9">
 				 <select size="1" id="tipodoc" class="form-control input-sm">
-	                	<option value="DNI">DNI</option>
-	                    <option value="Licencia de Conducir">Licencia de Conducir</option>
+	                	<option value="1">DNI</option>
+	                    <option value="2">Licencia de Conducir</option>
 	                           </select>
 	                    </div>
 	                    </div>
@@ -297,7 +297,7 @@
 				        <th data-field="state" data-checkbox="true"></th>
 				        <th data-field="id" data-visible="false">Id</th>
 				        <th data-field="id_local" data-visible="false">Id_local</th>
-				        <th data-field="tipodoc"># Tipo</th>
+				        <th data-field="tipodocshow"># Tipo</th>
 				        <th data-field="valor"># Documento</th>
 				    </tr>
 				    </thead>
@@ -310,8 +310,8 @@
 				 		<fieldset>
 				 		<legend align= "left">
 					 		<p>Datos Academicos
-							 		<button type="button" class="btn btn-success btn-addItem-derecha">-</button>
-							 		<button type="button" class="btn btn-success btn-addItem-derecha">+</button>
+							 		<button type="button" class="btn btn-success btn-addItem-derecha" data-method="remove" data-table="gradoAcademico">-</button>
+							 		<button type="button" class="btn btn-success btn-addItem-derecha" data-method="append" data-table="gradoAcademico">+</button>
 					 		</p>
 				 		</legend>
 				 		
@@ -319,7 +319,7 @@
 				 <div class="form-group">
 				 <label for="email" class="col-sm-3 contro1-label">Grado Academico:</label>
 				 <div class="col-sm-9">
-				 <select size="1" class="form-control input-sm">
+				 <select size="1" class="form-control input-sm" id="gradoAcademico">
 	                	<option value="Master">Master</option>
 	                    <option value="Doctor">Doctor</option>
 	                    </select>
@@ -327,9 +327,9 @@
 	                    </div>
 	                                 
 	                 <div class="form-group">
-				 <label for="email" class="col-sm-3 contro1-label">Profecion:</label>
+				 <label for="email" class="col-sm-3 contro1-label">Profesion:</label>
 				 <div class="col-sm-9">
-				 <select size="1" class="form-control input-sm">
+				 <select size="1" class="form-control input-sm" id="profesion">
 	                	<option value="Ing.Sistemas">Ing.Sistemas</option>
 	                    <option value="Ing.Industrial">Ing.Industrial</option>
 	                    </select>
@@ -339,9 +339,9 @@
 	             <div class="form-group">
 				 <label class="col-sm-3 contro1-label">Especialidad:</label>
 					 <div class="col-sm-9">
-						 <select size="1" class="form-control input-sm">
-			                	<option value="S.I">S.I</option>
-			                    <option value="T.I">T.I</option>
+						 <select size="1" class="form-control input-sm" id="especialidad">
+			                	<option value="1">S.I</option>
+			                    <option value="2">T.I</option>
 			             </select>
 		             </div>
 	             </div>
@@ -349,44 +349,30 @@
 	               <div class="form-group">
 				 <label class="col-sm-3 contro1-label">Institucion:</label>
 				 <div class="col-sm-9">
-				 <input type="text" class="form-control input-sm"/>  
+				 <input type="text" class="form-control input-sm" id="institucion"/>  
 	              </div>
 	              </div>
 	              
 	             <div class="form-group">
 				 <label class="col-sm-3 contro1-label">Fecha de Ingreso:</label>
 				 <div class="col-sm-9">
-				 <input type="date" class="form-control input-sm"/>
+				 <input type="date" class="form-control input-sm" id="fechaIngreso"/>
 				 </div>
 				 </div>
-				 <table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Grado Academico</th>
-							<th>Profecion</th>
-							<th>Especialidad</th>
-							<th>Institucion</th>
-							<th>Fecha</th>
-						</tr>
-					</thead>
-						<tr>
-							<td>DNI</td>
-							<td>70312419</td>
-							<td>DNI</td>
-							<td>DNI</td>
-							<td>70312419</td>
-						</tr>
-						<tr>
-							<td>Licencia de Conducir</td>
-							<td>56213597</td>
-							<td>DNI</td>
-							<td>DNI</td>
-							<td>70312419</td>
-						</tr>
+				 <table id="table_gradoAcademico" data-height="154" data-click-to-select="true">
+				    <thead>
+				    <tr>
+				        <th data-field="state" data-checkbox="true"></th>
+				        <th data-field="id_local" data-visible="false">Id_local</th>
+				        <th data-field="id" data-visible="false">Id</th>
+				        <th data-field="gradoAcademico">Grado Academico</th>
+				        <th data-field="profesion">Profesion</th>
+				        <th data-field="especialidadshow">Especialidad</th>
+				        <th data-field="institucion">Institucion</th>
+				        <th data-field="fechaIngreso">Ingreso</th>
+				    </tr>
+				    </thead>
 				</table>
-				 
-				 
-		
 			</div>
 			<div class="form-group">
 				 <input type="submit"value="Agregar" class="btn btn-primary">
@@ -465,7 +451,8 @@ form.validator().on('submit', function (e) {
 		dataForm.push(dataTelefonos);*/
 		dataForm=camposDinamicosPost(dataForm,"telefono");
 		dataForm=camposDinamicosPost(dataForm,"email");
-		dataForm=camposDinamicosPost(dataForm,"documento");
+		dataForm=campoDocumentoDinamicosPost(dataForm,"documento");
+		dataForm=campoGradoDinamicosPost(dataForm,"gradoAcademico");
 	  $.ajax({
 		  url: "<%=getServletContext().getContextPath() %>/Gestionar_Docente",
 		  method: "POST",
@@ -486,6 +473,35 @@ function camposDinamicosPost(dataForm,campo){
 		  nuevoCampo.push({
 			  "id": value.id,
 			  "campo": value.valor
+		    });
+		});
+	  dataForm.push({name:"json_"+campo,value:JSON.stringify(nuevoCampo)});
+	  return dataForm;
+}
+function campoDocumentoDinamicosPost(dataForm,campo){
+	var dataTable=$('#table_'+campo).bootstrapTable('getData');
+	var nuevoCampo=[];
+	  $.each( dataTable, function( key, value ) {
+		  nuevoCampo.push({
+			  "id": value.id,
+			  "tipodoc":value.tipodoc,
+			  "campo": value.valor
+		    });
+		});
+	  dataForm.push({name:"json_"+campo,value:JSON.stringify(nuevoCampo)});
+	  return dataForm;
+}
+function campoGradoDinamicosPost(dataForm,campo){
+	var dataTable=$('#table_'+campo).bootstrapTable('getData');
+	var nuevoCampo=[];
+	  $.each( dataTable, function( key, value ) {
+		  nuevoCampo.push({
+			   "id": value.id,
+			   "gradoAcademico": value.gradoAcademico,
+	           "profesion":value.profesion,
+	           "especialidad": value.especialidad,
+	           "institucion":value.institucion,
+	           "fechaIngreso":value.fechaIngreso
 		    });
 		});
 	  dataForm.push({name:"json_"+campo,value:JSON.stringify(nuevoCampo)});

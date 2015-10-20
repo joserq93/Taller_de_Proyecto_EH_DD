@@ -26,7 +26,6 @@ import edu.usmp.fia.taller.common.bean.Docente;
 import edu.usmp.fia.taller.common.bean.Hora;
 import edu.usmp.fia.taller.common.bean.Persona;
 import edu.usmp.fia.taller.common.dao.DAOFactory;
-
 import edu.usmp.fia.taller.common.dao.modules.registrodocente.DAOFactoryRegDocente;
 
 
@@ -96,9 +95,7 @@ public class Gestionar_Docente extends ActionServlet {
 			docente=new Docente();
 			docente.setId_docente(idPersona);
 			docente.setUrl_foto(url_foto);
-			//docente.setSexo(sexo);
 			docente.setEstado_civil(estado_civil);
-			//docente.setFecha_nacimiento(fecha_nacimiento);
 			docente.setId_Pais_nacionalidad(id_Pais_nacionalidad);
 			docente.setId_Departamento_nacionalidad(id_Departamento_nacionalidad);
 			docente.setId_Provincia_nacionalidad(id_Provincia_nacionalidad);
@@ -107,7 +104,6 @@ public class Gestionar_Docente extends ActionServlet {
 			docente.setId_Provincia_direccion(id_Provincia_direccion);
 			docente.setId_Distrito_direccion(id_Distrito_direccion);
 			docente.setFecha_nacimiento(fecha_nacimiento);
-			//docente.setReferencia_direccion(referencia_direccion);
 			docente.setEstado(estado);
 			docente.setReferencia_direccion(referencia_direccion);
 			/*
@@ -126,11 +122,20 @@ public class Gestionar_Docente extends ActionServlet {
 				String json_telefono=request.getParameter("json_telefono");
 				String json_email=request.getParameter("json_email");
 				String json_documento=request.getParameter("json_documento");
+				String json_gradoAcademico=request.getParameter("json_gradoAcademico");
 
-				
+				if(!json_telefono.equals("[]"))
 				regdoce.regDocente().guardarTelefonos(json_telefono, ""+idPersona);
-				
+
+				if(!json_email.equals("[]"))
 				regdoce.regDocente().guardarEmails(json_email, ""+idPersona);
+
+				if(!json_documento.equals("[]"))
+					regdoce.regDocente().guardarDocumentos(json_documento, ""+idPersona);
+
+				if(!json_gradoAcademico.equals("[]"))
+					regdoce.regDocente().guardarGradosAcademicos(json_gradoAcademico, ""+idPersona);
+
 				mensaje="Datos Guardados";
 			}
 				mensaje="Ocurrio un error";

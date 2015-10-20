@@ -2,7 +2,7 @@
 <%@page import="edu.usmp.fia.taller.common.bean.Dia"%>
 <%@page import="java.util.Vector"%>
 <%@page import="edu.usmp.fia.taller.common.action.SessionParameters"%>
-<%@page import="edu.usmp.fia.taller.docente.servlet.Listar_DocenteServlet"%>
+<%@page import="edu.usmp.fia.taller.registrodocente.servlet.Listar_DocenteServlet"%>
 <%@page import="edu.usmp.fia.taller.common.bean.Persona"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
