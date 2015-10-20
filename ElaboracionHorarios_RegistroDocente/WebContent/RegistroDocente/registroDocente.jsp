@@ -373,11 +373,16 @@
 				    </tr>
 				    </thead>
 				</table>
+				 	<div class="form-group" id="msj1" style="display:none">
+				 	<br/>
+						<div class="alert alert-success" role="alert" id="msj2"></div>
+			        </div>
 			</div>
 			<div class="form-group">
 				 <input type="submit"value="Agregar" class="btn btn-primary">
 	        </div>
 		</div>
+		
 		</form>
 		</div>
 	</div>
@@ -459,12 +464,30 @@ form.validator().on('submit', function (e) {
 		  data: dataForm,
 		  dataType: "json",
 		  
-		}).done(function( departamentos ) {
-			alert(departamentos);
+		}).done(function( respuesta ) {
+			console.log(respuesta);
+			if(respuesta.exito){
+				resetearFormulario(form);
+				$("#msj2").html(respuesta.mensaje);
+				$("#msj1").fadeToggle("fast", function() {
+					$("#msj1").delay(2000).fadeToggle(1000);
+				});;
+				
+			}
 		});
     // everything looks good!
   }
 });
+
+function resetearFormulario(form){
+	form[0].reset();
+	$("select[id*='combo_provincias']").prop('disabled', true);
+	$("select[id*='combo_distritos']").prop('disabled', true);
+	$("#table_gradoAcademico").bootstrapTable('load', []);
+	$("#table_telefono").bootstrapTable('load', []);
+	$("#table_documento").bootstrapTable('load', []);
+	$("#table_email").bootstrapTable('load', []);
+}
 
 function camposDinamicosPost(dataForm,campo){
 	var dataTable=$('#table_'+campo).bootstrapTable('getData');

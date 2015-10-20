@@ -47,7 +47,9 @@ public class Gestionar_Docente extends ActionServlet {
 	public void guardarDocente() throws Exception {
 		Docente docente=null;
 		Persona persona=null;
-		String mensaje="";
+		JSONObject  mensaje=new JSONObject();
+					mensaje.put("exito", false);
+					mensaje.put("mensaje", "Ocurrio un error al regstrar el Docente");
 		try {
 		//	SimpleDateFormat forma=new SimpleDateFormat("yyyy-MM-dd");
 
@@ -118,6 +120,9 @@ public class Gestionar_Docente extends ActionServlet {
 	//		DAOFactoryRegDocente regdoce = dao.getRegistroDocente();
 			boolean resultadoExito = regdoce.regDocente().guardarDocente(docente);
 			
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			PrintWriter out = response.getWriter();
 			if(resultadoExito){
 				String json_telefono=request.getParameter("json_telefono");
 				String json_email=request.getParameter("json_email");
@@ -136,12 +141,16 @@ public class Gestionar_Docente extends ActionServlet {
 				if(!json_gradoAcademico.equals("[]"))
 					regdoce.regDocente().guardarGradosAcademicos(json_gradoAcademico, ""+idPersona);
 
-				mensaje="Datos Guardados";
+				 
+				mensaje.put("exito", true);
+				mensaje.put("mensaje", "El Docente fue registrado satisfactoriamente");
+				
 			}
-				mensaje="Ocurrio un error";
-			request.setAttribute("mensaje", mensaje);
+			
+			out.print(mensaje);
+			//request.setAttribute("mensaje", mensaje);
 
-			request.getRequestDispatcher("/RegistroDocente/mensaje.jsp").forward(request, response);
+			//request.getRequestDispatcher("/RegistroDocente/mensaje.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
