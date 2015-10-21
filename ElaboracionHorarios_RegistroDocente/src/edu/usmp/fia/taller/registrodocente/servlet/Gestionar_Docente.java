@@ -68,8 +68,8 @@ public class Gestionar_Docente extends ActionServlet {
 			String nombre=request.getParameter("nombres");
 			String apellido_paterno=request.getParameter("apellidopaterno");
 			String apellido_materno=request.getParameter("apellidomaterno");
-			//String sexo=request.getParameter("sexo");
-			//char estado_civil=request.getParameter("estadocivil").charAt(0);
+			String sexo=request.getParameter("sexo");
+			char estado_civil=request.getParameter("estadocivil").charAt(0);
 			String fecha_nacimiento=request.getParameter("fechanacimiento");
 			int id_Pais_nacionalidad=Integer.parseInt(request.getParameter("pais"));
 			int id_Departamento_nacionalidad=Integer.parseInt(request.getParameter("departamento1"));
@@ -84,9 +84,9 @@ public class Gestionar_Docente extends ActionServlet {
 			persona=new Persona();
 
 			persona.setNombre1(nombre);
-			persona.setApePaterno(apellido_materno);
-			persona.setApeMaterno(apellido_paterno);
-			
+			persona.setApePaterno(apellido_paterno);
+			persona.setApeMaterno(apellido_materno);
+			persona.setSexo(sexo);
 			DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 			DAOFactoryRegDocente regdoce = dao.getRegistroDocente();
 			
@@ -97,7 +97,7 @@ public class Gestionar_Docente extends ActionServlet {
 			docente.setId_docente(idPersona);
 			docente.setUrl_foto(url_foto);
 			//docente.setSexo(sexo);
-			//docente.setEstado_civil(estado_civil);
+			docente.setEstado_civil(estado_civil);
 			//docente.setFecha_nacimiento(fecha_nacimiento);
 			docente.setId_Pais_nacionalidad(id_Pais_nacionalidad);
 			docente.setId_Departamento_nacionalidad(id_Departamento_nacionalidad);

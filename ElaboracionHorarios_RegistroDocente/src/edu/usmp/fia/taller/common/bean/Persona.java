@@ -10,9 +10,23 @@ public class Persona implements Serializable {
 	private String nombre2;
 	private String apePaterno;
 	private String apeMaterno;
+	private String sexo;
+	private String email;
 	private User usuario;
 	
 	
+	public String getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public int getIdPersona() {
 		return idPersona;
 	}

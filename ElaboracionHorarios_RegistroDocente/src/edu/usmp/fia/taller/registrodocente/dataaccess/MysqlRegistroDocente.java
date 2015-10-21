@@ -26,6 +26,8 @@ import edu.usmp.fia.taller.registrodocente.dataaccess.interfaces.DAORegistroDoce
 
 public class MysqlRegistroDocente extends MySqlDAOFactory implements DAORegistroDocente{
 
+	
+	
 	@Override
 	public List<Docente> getDocentes() throws Exception {
 		// TODO Auto-generated method stub
@@ -86,6 +88,7 @@ public class MysqlRegistroDocente extends MySqlDAOFactory implements DAORegistro
 	@Override
 	public boolean guardarDocente(Docente docente) throws Exception {
 		String resultado="";
+		
 		try {
 			Connection conexion = (Connection) getConnection();
 			Statement stmt = conexion.createStatement();
@@ -93,7 +96,7 @@ public class MysqlRegistroDocente extends MySqlDAOFactory implements DAORegistro
 			
 			
 			//(id_profesor ,id_Pais_nacionalidad ,id_Departamento_nacionalidad ,id_Provincia_nacionalidad ,id_Distrito_nacionalidad ,id_Departamento_direccion ,id_Provincia_direccion ,id_Distrito_direccion ,url_foto ,estado ,estado_civil ,fecha_nacimiento ,referencia_direccion)
-			String consulta = "insert into t_profesor(id_profesor,id_Pais_nacionalidad,"
+			String consulta = "insert into t_profesor(id,id_Pais_nacionalidad,"
 					+ "id_Departamento_nacionalidad,id_Provincia_nacionalidad,id_Distrito_nacionalidad,"
 					+ "id_Departamento_direccion,id_Provincia_direccion,id_Distrito_direccion,"
 					+ "url_foto,estado,estado_civil,"
@@ -334,16 +337,31 @@ public class MysqlRegistroDocente extends MySqlDAOFactory implements DAORegistro
 	
 	
 //----------------------------INICIO metodo de persona
+	private int obtenerUltiId()throws Exception{
+		Connection conexion = (Connection) getConnection();
+		Statement stmt = conexion.createStatement();
+		ResultSet rs=stmt.executeQuery("select id from t_persona  where id like '201%' ORDER BY id DESC");
+		int i=0;
+		if(rs.next()){
+			i=Integer.parseInt(rs.getString("id"));
+		}
+		
+		return i+1;
+	}
+	
 	@Override
 	public int guardarPersona(Persona persona) throws Exception {
+		int id_persona=obtenerUltiId();
+		System.out.print("---"+id_persona+"codigo persona");
+		
 		try {
 			Connection conexion = (Connection) getConnection();
 			Statement stmt = conexion.createStatement();
-			int id_persona=generarIdProfesor();
+		//	int id_persona=generarIdProfesor();
 
-			String sqlPersona = "insert into persona (id_persona,nombre_1, ape_paterno, ape_materno, id_user)"
+			String sqlPersona = "insert into t_persona (id, nombre, apellido_paterno, apellido_materno, sexo)"
 					+ "values('"+id_persona+"','"+persona.getNombre1()+"','"+persona.getApePaterno()
-					+"','"+persona.getApePaterno()+"',null)";
+					+"','"+persona.getApeMaterno()+"','"+persona.getSexo()+"')";
 
 			//stmt.executeUpdate(sqlPersona,Statement.RETURN_GENERATED_KEYS);
 			stmt.executeUpdate(sqlPersona);
