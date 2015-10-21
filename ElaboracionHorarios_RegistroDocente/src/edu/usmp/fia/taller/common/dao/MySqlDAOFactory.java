@@ -14,14 +14,25 @@ import org.apache.log4j.Logger;
 
 
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import edu.usmp.fia.taller.common.dao.modules.DAOFactoryGeneral;
 import edu.usmp.fia.taller.common.dao.modules.MysqlFactoryGeneral;
 import edu.usmp.fia.taller.common.dao.modules.elaboracionhorario.DAOFactoryElabHorarios;
 import edu.usmp.fia.taller.common.dao.modules.elaboracionhorario.MysqlFactoryElabHorarios;
+import edu.usmp.fia.taller.common.dao.modules.email.DAOFactoryEmail;
+import edu.usmp.fia.taller.common.dao.modules.email.MySqlFactoryEmail;
 import edu.usmp.fia.taller.common.dao.modules.mallacurricular.DAOFactoryMCurricular;
 import edu.usmp.fia.taller.common.dao.modules.mallacurricular.MySqlFactoryMCurricular;
+import edu.usmp.fia.taller.common.dao.modules.persona.DAOFactoryPersona;
+import edu.usmp.fia.taller.common.dao.modules.persona.MySqlFactoryPersona;
 import edu.usmp.fia.taller.common.dao.modules.registro.docente.DAOFactoryRegDocente;
 import edu.usmp.fia.taller.common.dao.modules.registro.docente.MysqlFactoryRegDocente;
+import edu.usmp.fia.taller.common.dao.modules.telefono.DAOFactoryTelefono;
+import edu.usmp.fia.taller.common.dao.modules.telefono.MySqlFactoryTelefono;
 import edu.usmp.fia.taller.common.util.ThreadUtil;
 
 
@@ -71,11 +82,13 @@ public class MySqlDAOFactory extends DAOFactory {
 		}
 		return connection;
 	}
-
-
+	
 	public DAOFactoryGeneral getGeneral() { return new MysqlFactoryGeneral(); }
 	public DAOFactoryMCurricular getMallaCurricular() { return new MySqlFactoryMCurricular(); }
 	public DAOFactoryRegDocente getRegistroDocente() { return new MysqlFactoryRegDocente(); }
 	public DAOFactoryElabHorarios getElaboracionHorario() {return new MysqlFactoryElabHorarios();}
+	public DAOFactoryPersona getRegistroPersona() {return new MySqlFactoryPersona();}
+	public DAOFactoryTelefono getRegistroTelefono() {return new MySqlFactoryTelefono();}
+	public DAOFactoryEmail getRegistroEmail() {return new MySqlFactoryEmail();}
 	
 }

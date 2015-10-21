@@ -22,7 +22,7 @@ $( document ).ready(function() {
 			var rows = [];
 			rows.push({
 	            id: -1,
-	            telefono: telefono,
+	            valor: telefono,
 	            id_local: telefono
 	        });
 			$('#telefono').val('');
@@ -33,17 +33,17 @@ $( document ).ready(function() {
 		return null;
 	}
 	function append_documento(){
-		var numero=$('#numero').val();
+		var numero=$('#documento').val();
 		var tipodoc=$('#tipodoc').val();
 		if(numero!=''&&tipodoc!=''){
 			var rows = [];
 			rows.push({
 	            id: -1,
-	            numero: numero,
+	            valor: numero,
 	            tipodoc:tipodoc,
 	            id_local: numero
 	        });
-			$('#numero').val('');
+			$('#documento').val('');
 			return rows;
 		}
 		else
@@ -56,7 +56,7 @@ $( document ).ready(function() {
 			var rows = [];
 			rows.push({
 	            id: -1,
-	            email: email,
+	            valor: email,
 	            id_local: email
 	        });
 			$('#email').val('');
@@ -100,3 +100,5 @@ $( document ).ready(function() {
 
 });
 
+
+	

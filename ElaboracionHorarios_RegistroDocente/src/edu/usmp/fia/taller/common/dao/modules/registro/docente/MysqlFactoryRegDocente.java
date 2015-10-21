@@ -79,24 +79,31 @@ public class MysqlFactoryRegDocente extends MySqlDAOFactory implements DAOFactor
 	}
 
 	@Override
-	public String guardarDocente(Docente docente) throws Exception {
+	public boolean guardarDocente(Docente docente) throws Exception {
 		String resultado="";
 		try {
 			Connection conexion = (Connection) getConnection();
 			Statement stmt = conexion.createStatement();
-			
-			String consulta = "insert into docente(fecha_ingreso,fecha_nacimiento,id_Pais_nacionalidad,id_Departamento_nacionalidad,id_Provincia_nacionalidad,id_Distrito_nacionalidad,id_Departamento_direccion,id_Provincia_direccion,id_Distrito_direccion,nombre,apellido_materno,apellido_paterno,url_foto,telefono,correo,estado,estado_civil,sexo,referencia_direccion,tipo_documento,grado_academico,profecion,especialidad,institucion)"
-					+ "values('"+docente.getFecha_ingreso()+"','"+docente.getFecha_nacimiento()+"','"+docente.getId_Pais_nacionalidad()+"','"+docente.getId_Departamento_nacionalidad()+"','"+docente.getId_Provincia_nacionalidad()+"','"+docente.getId_Distrito_nacionalidad()+"','"+docente.getId_Departamento_direccion()+"','"+docente.getId_Provincia_direccion()+"','"+docente.getId_Distrito_direccion()+"','"+docente.getNombre()+"','"+docente.getApellido_materno()+"','"+docente.getApellido_paterno()+"','"+docente.getUrl_foto()+"','"+docente.getTelefono()+"','"+docente.getCorreo()+"','"+docente.getEstado()+"','"+docente.getEstado_civil()+"','"+docente.getSexo()+"','"+docente.getReferencia_direccion()+"','"+docente.getTipo_documento()+"','"+docente.getGrado_academico()+"','"+docente.getProfecion()+"','"+docente.getEspecialidad()+"','"+docente.getInstitucion()+"')";
+			//INSERT INTO  VALUES (NULL, 'adsadasd', 'asdasd', 'asdasd', 'asdasd', '1');
 			
 			
+			//(id_profesor ,id_Pais_nacionalidad ,id_Departamento_nacionalidad ,id_Provincia_nacionalidad ,id_Distrito_nacionalidad ,id_Departamento_direccion ,id_Provincia_direccion ,id_Distrito_direccion ,url_foto ,estado ,estado_civil ,fecha_nacimiento ,referencia_direccion)
+			String consulta = "insert into t_profesor(id_profesor,id_Pais_nacionalidad,"
+					+ "id_Departamento_nacionalidad,id_Provincia_nacionalidad,id_Distrito_nacionalidad,"
+					+ "id_Departamento_direccion,id_Provincia_direccion,id_Distrito_direccion,"
+					+ "url_foto,estado,estado_civil,"
+					+ "fecha_nacimiento,referencia_direccion)"
+					+ "values("+docente.getId_docente()+",'"+docente.getId_Pais_nacionalidad()
+					+"','"+docente.getId_Departamento_nacionalidad()+"','"+docente.getId_Provincia_nacionalidad()
+					+"','"+docente.getId_Distrito_nacionalidad()+"','"+docente.getId_Departamento_direccion()
+					+"','"+docente.getId_Provincia_direccion()+"','"+docente.getId_Distrito_direccion()
+					+"','"+docente.getUrl_foto()+"','"+docente.getEstado()
+					+"','"+docente.getEstado_civil()+"','"+docente.getFecha_nacimiento()+"','"+docente.getReferencia_direccion()+"')";
+
 			
-			int filas=stmt.executeUpdate(consulta);
+			int filas=stmt.executeUpdate(consulta,Statement.RETURN_GENERATED_KEYS);
 			
-			if(filas==1){
-				resultado="Datos Guardados";
-			}else{
-				resultado="Ocurrio un Error";
-			}
+			return true;
 			
 			
 		} catch (Exception e) {
@@ -105,9 +112,9 @@ public class MysqlFactoryRegDocente extends MySqlDAOFactory implements DAOFactor
 		}
 		
 		
-		return resultado;
+		return false;
 	}
-
+	
 	
 	public List<Ubigeo> getProvincias(String coddpto) throws Exception {
 		// TODO Auto-generated method stub

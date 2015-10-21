@@ -9,8 +9,11 @@ import java.util.List;
 import edu.usmp.fia.taller.common.bean.Ubigeo;
 import edu.usmp.fia.taller.common.dao.modules.DAOFactoryGeneral;
 import edu.usmp.fia.taller.common.dao.modules.mallacurricular.DAOFactoryMCurricular;
+import edu.usmp.fia.taller.common.dao.modules.persona.DAOFactoryPersona;
 import edu.usmp.fia.taller.common.dao.modules.registro.docente.DAOFactoryRegDocente;
+import edu.usmp.fia.taller.common.dao.modules.telefono.DAOFactoryTelefono;
 import edu.usmp.fia.taller.common.dao.modules.elaboracionhorario.DAOFactoryElabHorarios;
+import edu.usmp.fia.taller.common.dao.modules.email.DAOFactoryEmail;
 
 
 public abstract class DAOFactory {
@@ -23,7 +26,10 @@ public abstract class DAOFactory {
 	public abstract DAOFactoryGeneral getGeneral();
 	public abstract DAOFactoryMCurricular getMallaCurricular();
 	public abstract DAOFactoryRegDocente getRegistroDocente();
+	public abstract DAOFactoryPersona getRegistroPersona();
 	public abstract DAOFactoryElabHorarios getElaboracionHorario();
+	public abstract DAOFactoryTelefono getRegistroTelefono();
+	public abstract DAOFactoryEmail getRegistroEmail();
 	
 	
 	public static DAOFactory getDAOFactory(int factory){
@@ -60,7 +66,4 @@ public abstract class DAOFactory {
 			o = null;
 		}
 	}
-	
-
-	
 }

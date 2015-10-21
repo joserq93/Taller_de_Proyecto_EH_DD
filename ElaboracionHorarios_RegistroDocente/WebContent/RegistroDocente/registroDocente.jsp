@@ -100,8 +100,8 @@
 				<label for="sexo" class="col-sm-3 control-label">Sexo:</label>
 				 <div class="col-sm-9">
 				 <select size="1" name="sexo" class="form-control input-sm">
-	                	<option value="M">Masculino</option>
-	                    <option value="F">Femenino</option>
+	                	<option value="Masculino">Masculino</option>
+	                    <option value="Femenino">Femenino</option>
 	                     </select>
 	             </div>
 	             </div>
@@ -233,7 +233,7 @@
 				        <th data-field="state" data-checkbox="true"></th>
 				        <th data-field="id" data-visible="false">Id</th>
 				        <th data-field="id_local" data-visible="false">Id_local</th>
-				        <th data-field="telefono">Telefono</th>
+				        <th data-field="valor">Telefono</th>
 				    </tr>
 				    </thead>
 				</table>
@@ -260,7 +260,7 @@
 				        <th data-field="state" data-checkbox="true"></th>
 				        <th data-field="id" data-visible="false">Id</th>
 				        <th data-field="id_local" data-visible="false">Id_local</th>
-				        <th data-field="email">E-mail</th>
+				        <th data-field="valor">E-mail</th>
 				    </tr>
 				    </thead>
 				</table>
@@ -281,7 +281,7 @@
 				 <div class="col-sm-9">
 				 <div class="row">
 					  <div class="col-xs-9">
-					  <input type="text" id="numeroDocumento" class="form-control input-sm"/>
+					  <input type="text" id="documento" class="form-control input-sm"/>
 					  </div>
 					  <div class="col-xs-3">
 						<button type="button" class="btn btn-success btn-addItem" data-method="remove" data-table="documento">-</button>
@@ -295,10 +295,10 @@
 				    <thead>
 				    <tr>
 				        <th data-field="state" data-checkbox="true"></th>
-				        <th data-field="id_numero" data-visible="false">Id</th>
+				        <th data-field="id" data-visible="false">Id</th>
 				        <th data-field="id_local" data-visible="false">Id_local</th>
 				        <th data-field="tipodoc"># Tipo</th>
-				        <th data-field="numero"># Documento</th>
+				        <th data-field="valor"># Documento</th>
 				    </tr>
 				    </thead>
 				</table>
@@ -452,38 +452,45 @@
 		  </div>
 		</div>
 		<!-- Fin Modal -->
-		<script>
-		var form =$('#formDocente');
-		form.validator().on('submit', function (e) {
-		  if (e.isDefaultPrevented()) {
-			  
-		  } else {
-			  e.preventDefault();
-			  var dataForm=form.serializeArray();
-			  	/*console.log(dataTelefonos);
-				dataForm.push(dataTelefonos);*/
-			  console.log(dataForm);
-			  $.ajax({
-				  url: "<%=getServletContext().getContextPath() %>/Gestionar_Docente",
-				  method: "POST",
-				  data: dataForm,
-				  dataType: "json",
-				  
-				}).done(function( departamentos ) {
-					console.log(departamentos);
-					
-				});
-		    // everything looks good!
-		  }
+<script>
+
+var form =$('#formDocente');
+form.validator().on('submit', function (e) {
+  if (e.isDefaultPrevented()) {
+	  
+  } else {
+	  e.preventDefault();
+	  var dataForm=form.serializeArray();
+	  	/*console.log(dataTelefonos);
+		dataForm.push(dataTelefonos);*/
+		dataForm=camposDinamicosPost(dataForm,"telefono");
+		dataForm=camposDinamicosPost(dataForm,"email");
+		dataForm=camposDinamicosPost(dataForm,"documento");
+	  $.ajax({
+		  url: "<%=getServletContext().getContextPath() %>/Gestionar_Docente",
+		  method: "POST",
+		  data: dataForm,
+		  dataType: "json",
+		  
+		}).done(function( departamentos ) {
+			alert(departamentos);
 		});
-		
-		function telefonoataPost(nombreTabla){
-		var dataTelefonos=$('#table_'+nombreTabla).bootstrapTable('getData');
-		dataTelefonos.each(function( index, filaTabla ) {
-			
+    // everything looks good!
+  }
+});
+
+function camposDinamicosPost(dataForm,campo){
+	var dataTable=$('#table_'+campo).bootstrapTable('getData');
+	var nuevoCampo=[];
+	  $.each( dataTable, function( key, value ) {
+		  nuevoCampo.push({
+			  "id": value.id,
+			  "campo": value.valor
+		    });
 		});
-			
-		}
+	  dataForm.push({name:"json_"+campo,value:JSON.stringify(nuevoCampo)});
+	  return dataForm;
+}
 </script>
 </body>
 </html>
