@@ -1,4 +1,4 @@
-package edu.usmp.fia.taller.docente.servlet;
+package edu.usmp.fia.taller.registrodocente.servlet;
 
 import java.io.IOException;
 import java.util.List;

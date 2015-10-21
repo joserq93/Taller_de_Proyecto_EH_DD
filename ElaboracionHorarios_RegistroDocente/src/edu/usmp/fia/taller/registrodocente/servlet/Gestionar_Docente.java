@@ -1,7 +1,8 @@
-package edu.usmp.fia.taller.docente.servlet;
+package edu.usmp.fia.taller.registrodocente.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Vector;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,13 +21,14 @@ import edu.usmp.fia.taller.common.action.ActionServlet;
 import edu.usmp.fia.taller.common.action.HttpMethod;
 import edu.usmp.fia.taller.common.action.HttpMethodType;
 import edu.usmp.fia.taller.common.action.RequireLogin;
+import edu.usmp.fia.taller.common.bean.Dia;
 import edu.usmp.fia.taller.common.bean.Docente;
+import edu.usmp.fia.taller.common.bean.Hora;
 import edu.usmp.fia.taller.common.bean.Persona;
 import edu.usmp.fia.taller.common.dao.DAOFactory;
-import edu.usmp.fia.taller.common.dao.modules.email.DAOFactoryEmail;
-import edu.usmp.fia.taller.common.dao.modules.persona.DAOFactoryPersona;
-import edu.usmp.fia.taller.common.dao.modules.registro.docente.DAOFactoryRegDocente;
-import edu.usmp.fia.taller.common.dao.modules.telefono.DAOFactoryTelefono;
+
+import edu.usmp.fia.taller.common.dao.modules.registrodocente.DAOFactoryRegDocente;
+
 
 /**
  * Servlet implementation class Registrar_Docente
@@ -46,6 +48,7 @@ public class Gestionar_Docente extends ActionServlet {
 	public void guardarDocente() throws Exception {
 		Docente docente=null;
 		Persona persona=null;
+		String mensaje="";
 		try {
 		//	SimpleDateFormat forma=new SimpleDateFormat("yyyy-MM-dd");
 
@@ -85,8 +88,10 @@ public class Gestionar_Docente extends ActionServlet {
 			persona.setApeMaterno(apellido_paterno);
 			
 			DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-			DAOFactoryPersona regPersona = dao.getRegistroPersona();
-			int idPersona = regPersona.guardarPersona(persona);
+			DAOFactoryRegDocente regdoce = dao.getRegistroDocente();
+			
+			
+			int idPersona = regdoce.regDocente().guardarPersona(persona);
 			
 			docente=new Docente();
 			docente.setId_docente(idPersona);
@@ -104,8 +109,8 @@ public class Gestionar_Docente extends ActionServlet {
 			docente.setFecha_nacimiento(fecha_nacimiento);
 			//docente.setReferencia_direccion(referencia_direccion);
 			docente.setEstado(estado);
-			
-			/*docente.setReferencia_direccion(referencia_direccion);
+			docente.setReferencia_direccion(referencia_direccion);
+			/*
 			docente.setCorreo(correo);
 			docente.setTipo_documento(tipo_documento);
 			docente.setGrado_academico(grado_academico);
@@ -114,23 +119,49 @@ public class Gestionar_Docente extends ActionServlet {
 			docente.setInstitucion(institucion);
 			docente.setFecha_ingreso(fecha_ingreso);*/
 
-			DAOFactoryRegDocente regdoce = dao.getRegistroDocente();
-			boolean resultadoExito = regdoce.guardarDocente(docente);
+	//		DAOFactoryRegDocente regdoce = dao.getRegistroDocente();
+			boolean resultadoExito = regdoce.regDocente().guardarDocente(docente);
 			
 			if(resultadoExito){
 				String json_telefono=request.getParameter("json_telefono");
 				String json_email=request.getParameter("json_email");
 				String json_documento=request.getParameter("json_documento");
 
-				DAOFactoryTelefono regTelefono = dao.getRegistroTelefono();
-				regTelefono.guardarTelefonos(json_telefono, ""+idPersona);
-				DAOFactoryEmail regEmail = dao.getRegistroEmail();
-				regEmail.guardarEmails(json_email, ""+idPersona);
+				
+				regdoce.regDocente().guardarTelefonos(json_telefono, ""+idPersona);
+				
+				regdoce.regDocente().guardarEmails(json_email, ""+idPersona);
+				mensaje="Datos Guardados";
 			}
-			
-			request.setAttribute("mensaje", "nada");
+				mensaje="Ocurrio un error";
+			request.setAttribute("mensaje", mensaje);
 
 			request.getRequestDispatcher("/RegistroDocente/mensaje.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+	}
+	
+	@HttpMethod(HttpMethodType.GET)
+	@RequireLogin(true)
+	public void listarHorasDisponibles() throws Exception {
+		
+		try {
+			
+			
+			DAOFactory dao = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+			
+			DAOFactoryRegDocente regdoce = dao.getRegistroDocente();
+			Vector<Dia> dias = regdoce.regDocente().listarDias();
+			Vector<Hora> horas=regdoce.regDocente().listarHoras();
+			
+			request.setAttribute("dias", dias);
+			request.setAttribute("horas", horas);
+
+			
+			request.getRequestDispatcher("/RegistroDocente/registroDisponibilidadDocente.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -1,4 +1,4 @@
-package edu.usmp.fia.taller.docente.servlet;
+package edu.usmp.fia.taller.registrodocente.servlet;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -17,8 +17,7 @@ import edu.usmp.fia.taller.common.action.HttpMethodType;
 import edu.usmp.fia.taller.common.action.RequireLogin;
 import edu.usmp.fia.taller.common.bean.Docente;
 import edu.usmp.fia.taller.common.dao.DAOFactory;
-import edu.usmp.fia.taller.common.dao.modules.registro.docente.DAOFactoryRegDocente;
-import edu.usmp.fia.taller.common.dao.modules.registro.docente.MysqlFactoryRegDocente;
+
 
 
 @WebServlet("/Guardar_Docente")
