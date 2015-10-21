@@ -51,6 +51,7 @@
 				<ul class="nav nav-sidebar">
 					<li class="active"><a href="#">Malla curricular</a></li>
 					<li><a href="Gestionar_Docente?f=registrarDocente">Registro de docentes</a></li>
+					<li><a href="Gestionar_Docente?f=registrarDisponibilidadDocente">Registro de Disponibilidad</a></li>
 					<li><a data-toggle="modal" href="#myModal">Elaboracion de Horarios</a></li>
 				</ul>
 			</div>
